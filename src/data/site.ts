@@ -8,8 +8,8 @@ export const SITE = {
   address: "Salle des fêtes Roméo",
   city: "Kinshasa, République Démocratique du Congo",
   contact: { 
-    email: "frederic.priscille@wedding.com", 
-    phone: "+33 6 12 34 56 78" 
+    email: "bejaminbks10@gmail.com",
+    phone: "+243 822 641 044"
   }
 };
 

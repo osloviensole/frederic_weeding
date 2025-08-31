@@ -84,7 +84,7 @@ export function Party() {
     },
     {
       title: 'Professionnels',
-      members: teamMembers.filter(member => ['Photographe', 'Officiant'].includes(member.role)),
+      members: teamMembers.filter(member => ['Photographe', 'Videaste'].includes(member.role)),
       icon: Camera,
       color: 'from-roseViolet to-violetLight'
     },

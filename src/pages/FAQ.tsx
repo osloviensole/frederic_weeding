@@ -9,7 +9,7 @@ export function FAQ() {
   const faqs = [
     {
       question: 'Quelle est la date limite pour répondre ?',
-      answer: 'Merci de confirmer votre présence avant le 15 novembre, afin que nous ayons un décompte précis. :)',
+      answer: 'Merci de confirmer votre présence avant le 10 decembre, afin que nous ayons un décompte précis. :)',
       icon: Calendar,
       category: 'RSVP'
     },
