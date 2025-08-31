@@ -55,10 +55,20 @@ export function Home() {
             >
               <h3 className="font-serif text-3xl text-ink">Une Rencontre Magique</h3>
               <p className="text-inkSecondary text-lg leading-relaxed">
-                Notre histoire a commencé par un regard, un sourire, et cette sensation inexplicable 
-                que quelque chose de spécial venait de se passer. Depuis ce jour, chaque moment 
-                ensemble nous rapproche un peu plus de notre rêve de partager notre amour avec 
-                ceux qui nous sont chers.
+                Pendant que le monde entier était à l'arrêt, une rencontre inattendue se préparait… 
+                C'était en plein confinement, durant la période du Covid-19. Un simple groupe WhatsApp 
+                créé pour partager des pensées bibliques est devenu le début d'une belle histoire.
+              </p>
+              <p className="text-inkSecondary text-lg leading-relaxed">
+                C'est là que Frédéric a remarqué Priscille. Elle, de son côté, se souvient d'un audio 
+                qu'elle avait envoyé dans le groupe pour préparer une Tour de Garde en ligne… et de ce moment 
+                où lui, intrigué, a osé lui écrire en privé. La réponse fut brève : « SALUT, C'EST QUI SVP ? »
+              </p>
+              <p className="text-inkSecondary text-lg leading-relaxed">
+                Après plusieurs semaines de discussions et d'échanges sincères, le 20 août 2020, 
+                ils se sont enfin rencontrés pour la première fois. Depuis ce jour, leur histoire 
+                s'est écrite à deux, partageant visites touristiques, moments d'étude, défis, 
+                fous rires… et même quelques disputes !
               </p>
               <p className="text-inkSecondary text-lg leading-relaxed">
                 Le 20 décembre 2025, nous unirons nos vies dans la joie et la célébration, 
