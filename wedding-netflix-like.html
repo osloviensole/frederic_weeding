@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Célébrez avec nous - Site de mariage élégant et moderne">
+    <title>Sophie & Alexandre | Notre Mariage</title>
+
+    <style>
+        /* ==========================================
+           CSS VARIABLES - Couleurs & Typographie
+           ========================================== */
+        :root {
+            --color-primary: #0b0b0b;
+            --color-surface: #141414;
+            --color-surface-hover: #1f1f1f;
+            --color-accent: #e50914;
+            --color-accent-hover: #f40612;
+            --color-text: #ffffff;
+            --color-text-secondary: #e6e6e6;
+            --color-text-muted: #b3b3b3;
+            --spacing-unit: 8px;
+            --header-height: 70px;
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            --transition-speed: 0.3s;
+        }
+
+        /* ==========================================
+           RESET & BASE STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-primary);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ==========================================
+           HEADER - Navigation fixe
+           ========================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1000;
+            transition: background-color var(--transition-speed);
+        }
+
+        .header.scrolled {
+            background-color: var(--color-primary);
+        }
+
+        .header-content {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-unit) * 6);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--color-accent);
+        }
+
+        .nav {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 3);
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            color: var(--color-text-muted);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            color: var(--color-text);
+            font-size: 1.5rem;
+            padding: calc(var(--spacing-unit) * 1);
+        }
+
+        /* ==========================================
+           HERO SECTION - Plein écran avec vidéo
+           ========================================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(11,11,11,0.9) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 calc(var(--spacing-unit) * 3);
+            max-width: 900px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--color-text-secondary);
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            font-weight: 300;
+        }
+
+        .hero-date {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--color-text-muted);
+            margin-bottom: calc(var(--spacing-unit) * 5);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 1);
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-text);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background-color: var(--color-accent-hover);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--color-text);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ==========================================
+           SECTION COMMUNE
+           ========================================== */
+        .section {
+            padding: calc(var(--spacing-unit) * 10) calc(var(--spacing-unit) * 6);
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: calc(var(--spacing-unit) * 5);
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+
+        /* ==========================================
+           CAROUSEL - Défilement horizontal
+           ========================================== */
+        .carousel-container {
+            position: relative;
+            margin-bottom: calc(var(--spacing-unit) * 8);
+        }
+
+        .carousel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .carousel-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .carousel-controls {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 1);
+        }
+
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--color-text);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed);
+        }
+
+        .carousel-btn:hover,
+        .carousel-btn:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .carousel-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .carousel-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .carousel-card {
+            flex: 0 0 calc(25% - calc(var(--spacing-unit) * 1.5));
+            min-width: 250px;
+            background-color: var(--color-surface);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            cursor: pointer;
+        }
+
+        .carousel-card:hover,
+        .carousel-card:focus-within {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            z-index: 10;
+        }
+
+        .carousel-card-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
+        }
+
+        .carousel-card-content {
+            padding: calc(var(--spacing-unit) * 2);
+        }
+
+        .carousel-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .carousel-card-description {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* ==========================================
+           EVENTS SECTION - Liste détaillée
+           ========================================== */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: calc(var(--spacing-unit) * 3);
+        }
+
+        .event-card {
+            background-color: var(--color-surface);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform var(--transition-speed);
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .event-card-header {
+            background: linear-gradient(135deg, var(--color-accent) 0%, #b20710 100%);
+            padding: calc(var(--spacing-unit) * 3);
+            position: relative;
+        }
+
+        .event-type {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .event-card-body {
+            padding: calc(var(--spacing-unit) * 3);
+        }
+
+        .event-info {
+            display: flex;
+            align-items: flex-start;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .event-icon {
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .event-details h4 {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            margin-bottom: 4px;
+        }
+
+        .event-details p {
+            font-size: 1rem;
+        }
+
+        .event-link {
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: calc(var(--spacing-unit) * 2);
+            transition: opacity var(--transition-speed);
+        }
+
+        .event-link:hover {
+            opacity: 0.8;
+        }
+
+        /* ==========================================
+           RSVP FORM
+           ========================================== */
+        .rsvp-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--color-surface);
+            padding: calc(var(--spacing-unit) * 6);
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            color: var(--color-text-secondary);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 2);
+            background-color: var(--color-primary);
+            border: 2px solid transparent;
+            border-radius: 4px;
+            color: var(--color-text);
+            font-size: 1rem;
+            transition: border-color var(--transition-speed);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-radio-group {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 3);
+        }
+
+        .form-radio-label {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 1);
+            cursor: pointer;
+        }
+
+        .form-radio {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--color-accent);
+        }
+
+        .form-success {
+            background-color: rgba(0, 255, 0, 0.1);
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        /* ==========================================
+           GIFT REGISTRY - Grille de produits
+           ========================================== */
+        .gifts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: calc(var(--spacing-unit) * 3);
+        }
+
+        .gift-card {
+            background-color: var(--color-surface);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform var(--transition-speed);
+        }
+
+        .gift-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .gift-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+        }
+
+        .gift-content {
+            padding: calc(var(--spacing-unit) * 3);
+        }
+
+        .gift-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .gift-price {
+            color: var(--color-accent);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .gift-description {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        /* ==========================================
+           ABOUT / PROFILE SECTION
+           ========================================== */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: calc(var(--spacing-unit) * 6);
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .about-text {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .timeline {
+            margin-top: calc(var(--spacing-unit) * 4);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .timeline-year {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            min-width: 80px;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .timeline-content p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================
+           VIDEO MODAL
+           ========================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--spacing-unit) * 3);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+        }
+
+        .modal-video {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: transparent;
+            color: var(--color-text);
+            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity var(--transition-speed);
+        }
+
+        .modal-close:hover {
+            opacity: 0.7;
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .footer {
+            background-color: var(--color-surface);
+            padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 6);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: calc(var(--spacing-unit) * 6);
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            transition: color var(--transition-speed);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        .social-links {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-speed);
+        }
+
+        .social-link:hover {
+            background-color: var(--color-accent);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: calc(var(--spacing-unit) * 6) auto 0;
+            padding-top: calc(var(--spacing-unit) * 4);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================
+           RESPONSIVE - Mobile First
+           ========================================== */
+        @media (max-width: 1024px) {
+            .carousel-card {
+                flex: 0 0 calc(33.333% - calc(var(--spacing-unit) * 1.5));
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 calc(var(--spacing-unit) * 3);
+            }
+
+            .nav {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                background-color: var(--color-primary);
+                flex-direction: column;
+                padding: calc(var(--spacing-unit) * 3);
+                transform: translateX(-100%);
+                transition: transform var(--transition-speed);
+            }
+
+            .nav.active {
+                transform: translateX(0);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .section {
+                padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 3);
+            }
+
+            .carousel-card {
+                flex: 0 0 calc(50% - calc(var(--spacing-unit) * 1));
+                min-width: 200px;
+            }
+
+            .events-grid,
+            .gifts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rsvp-container {
+                padding: calc(var(--spacing-unit) * 4);
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-card {
+                flex: 0 0 calc(100% - calc(var(--spacing-unit) * 1));
+            }
+        }
+
+        /* ==========================================
+           UTILITIES & ACCESSIBILITY
+           ========================================== */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==========================================
+         HEADER - Navigation fixe
+         ========================================== -->
+    <header class="header" role="banner">
+        <div class="header-content">
+            <a href="#home" class="logo" aria-label="Accueil">S & A</a>
+            <nav class="nav" role="navigation" aria-label="Navigation principale">
+                <a href="#home" class="nav-link active">Accueil</a>
+                <a href="#story" class="nav-link">Notre Histoire</a>
+                <a href="#events" class="nav-link">Événements</a>
+                <a href="#gallery" class="nav-link">Galerie</a>
+                <a href="#rsvp" class="nav-link">RSVP</a>
+                <a href="#gifts" class="nav-link">Liste de Cadeaux</a>
+            </nav>
+            <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+                ☰
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==========================================
+             HERO SECTION - Plein écran avec vidéo
+             ========================================== -->
+        <section id="home" class="hero" aria-labelledby="hero-title">
+            <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+                <source src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%231f1f1f' width='1920' height='1080'/%3E%3C/svg%3E" type="video/mp4">
+            </video>
+            <div class="hero-overlay" aria-hidden="true"></div>
+            <div class="hero-content">
+                <h1 id="hero-title" class="hero-title">Sophie & Alexandre</h1>
+                <p class="hero-subtitle">Célébrons notre amour ensemble</p>
+                <p class="hero-date">15 Juin 2025 • Paris, France</p>
+                <div class="hero-actions">
+                    <a href="#rsvp" class="btn btn-primary">
+                        <span>Confirmer ma présence</span>
+                        <span aria-hidden="true">→</span>
+                    </a>
+                    <button class="btn btn-secondary" data-video="intro">
+                        <span>▶</span>
+                        <span>Voir notre histoire</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             NOTRE HISTOIRE - Carrousel
+             ========================================== -->
+        <section id="story" class="section" aria-labelledby="story-title">
+            <div class="section-header">
+                <h2 id="story-title" class="section-title">Notre Histoire</h2>
+                <p class="section-description">
+                    Découvrez les moments qui ont marqué notre parcours ensemble
+                </p>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">Moments Clés</h3>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn" data-carousel="story" data-direction="prev" aria-label="Précédent">
+                            ←
+                        </button>
+                        <button class="carousel-btn" data-carousel="story" data-direction="next" aria-label="Suivant">
+                            →
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" data-carousel-track="story" role="list">
+                        <!-- Les cartes seront générées dynamiquement -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Section avec Timeline -->
+            <div class="about-container">
+                <div class="about-image-wrapper">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect fill='%232a2a2a' width='400' height='500'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='24'%3ENotre Photo%3C/text%3E%3C/svg%3E" alt="Sophie et Alexandre" class="about-image lazy-load">
+                </div>
+                <div class="about-content">
+                    <h3>Comment tout a commencé</h3>
+                    <p class="about-text">
+                        Notre histoire a débuté par un hasard merveilleux dans un café parisien en 2018.
+                        Ce qui devait être une simple rencontre s'est transformé en une aventure extraordinaire
+                        remplie de rires, de voyages et de moments inoubliables. Sept ans plus tard, nous sommes
+                        prêts à écrire le prochain chapitre de notre vie ensemble.
+                    </p>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2018</div>
+                            <div class="timeline-content">
+                                <h4>Première Rencontre</h4>
+                                <p>Un café parisien, un sourire, et tout a commencé</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-content">
+                                <h4>Premier Voyage</h4>
+                                <p>Deux semaines inoubliables en Italie</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-content">
+                                <h4>La Demande</h4>
+                                <p>Un coucher de soleil sur les toits de Paris</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-content">
+                                <h4>Notre Mariage</h4>
+                                <p>Le début d'une nouvelle aventure</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             ÉVÉNEMENTS - Liste détaillée
+             ========================================== -->
+        <section id="events" class="section" aria-labelledby="events-title">
+            <div class="section-header">
+                <h2 id="events-title" class="section-title">Événements</h2>
+                <p class="section-description">
+                    Rejoignez-nous pour célébrer notre union à travers ces moments spéciaux
+                </p>
+            </div>
+
+            <div class="events-grid" role="list">
+                <!-- Les événements seront générés dynamiquement -->
+            </div>
+        </section>
+
+        <!-- ==========================================
+             GALERIE - Carrousel d'images
+             ========================================== -->
+        <section id="gallery" class="section" aria-labelledby="gallery-title">
+            <div class="section-header">
+                <h2 id="gallery-title" class="section-title">Galerie</h2>
+                <p class="section-description">
+                    Nos plus beaux souvenirs en images
+                </p>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">Photos</h3>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn" data-carousel="gallery" data-direction="prev" aria-label="Précédent">
+                            ←
+                        </button>
+                        <button class="carousel-btn" data-carousel="gallery" data-direction="next" aria-label="Suivant">
+                            →
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" data-carousel-track="gallery" role="list">
+                        <!-- Les cartes seront générées dynamiquement -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">Vidéos</h3>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn" data-carousel="videos" data-direction="prev" aria-label="Précédent">
+                            ←
+                        </button>
+                        <button class="carousel-btn" data-carousel="videos" data-direction="next" aria-label="Suivant">
+                            →
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" data-carousel-track="videos" role="list">
+                        <!-- Les cartes seront générées dynamiquement -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             RSVP - Formulaire de confirmation
+             ========================================== -->
+        <section id="rsvp" class="section" aria-labelledby="rsvp-title">
+            <div class="section-header" style="text-align: center; max-width: none;">
+                <h2 id="rsvp-title" class="section-title">Confirmez votre présence</h2>
+                <p class="section-description" style="margin: 0 auto;">
+                    Nous serions ravis de vous compter parmi nous
+                </p>
+            </div>
+
+            <div class="rsvp-container">
+                <form id="rsvp-form" aria-label="Formulaire de confirmation">
+                    <div id="form-success" class="form-success" style="display: none;" role="alert">
+                        ✓ Merci ! Votre confirmation a été enregistrée avec succès.
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nom complet *</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            class="form-input"
+                            required
+                            aria-required="true"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email *</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-input"
+                            required
+                            aria-required="true"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Serez-vous présent(e) ? *</label>
+                        <div class="form-radio-group" role="radiogroup" aria-required="true">
+                            <label class="form-radio-label">
+                                <input
+                                    type="radio"
+                                    name="attendance"
+                                    value="yes"
+                                    class="form-radio"
+                                    required
+                                >
+                                <span>Oui, avec plaisir !</span>
+                            </label>
+                            <label class="form-radio-label">
+                                <input
+                                    type="radio"
+                                    name="attendance"
+                                    value="no"
+                                    class="form-radio"
+                                    required
+                                >
+                                <span>Non, malheureusement</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests" class="form-label">Nombre de personnes</label>
+                        <select id="guests" name="guests" class="form-select">
+                            <option value="1">1 personne</option>
+                            <option value="2">2 personnes</option>
+                            <option value="3">3 personnes</option>
+                            <option value="4">4 personnes</option>
+                            <option value="5">5+ personnes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message (optionnel)</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            class="form-textarea"
+                            placeholder="Partagez vos souhaits ou préférences alimentaires..."
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        Envoyer ma confirmation
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             LISTE DE CADEAUX - Grille de produits
+             ========================================== -->
+        <section id="gifts" class="section" aria-labelledby="gifts-title">
+            <div class="section-header">
+                <h2 id="gifts-title" class="section-title">Liste de Cadeaux</h2>
+                <p class="section-description">
+                    Si vous souhaitez nous offrir un cadeau, voici quelques idées qui nous feraient plaisir
+                </p>
+            </div>
+
+            <div class="gifts-grid" role="list">
+                <!-- Les cadeaux seront générés dynamiquement -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sophie & Alexandre</h3>
+                <p style="color: var(--color-text-muted); margin-top: calc(var(--spacing-unit) * 2);">
+                    Nous sommes impatients de célébrer ce jour spécial avec vous.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#story">Notre Histoire</a></li>
+                    <li><a href="#events">Événements</a></li>
+                    <li><a href="#gallery">Galerie</a></li>
+                    <li><a href="#rsvp">RSVP</a></li>
+                    <li><a href="#gifts">Liste de Cadeaux</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul class="footer-links">
+                    <li>
+                        <a href="mailto:contact@sophiealexandre.com">
+                            contact@sophiealexandre.com
+                        </a>
+                    </li>
+                    <li style="color: var(--color-text-muted);">
+                        +33 1 23 45 67 89
+                    </li>
+                    <li style="color: var(--color-text-muted); margin-top: calc(var(--spacing-unit) * 2);">
+                        Paris, France
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sophie & Alexandre. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         VIDEO MODAL
+         ========================================== -->
+    <div class="modal" id="video-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fermer">×</button>
+            <h2 id="modal-title" class="visually-hidden">Lecture vidéo</h2>
+            <video class="modal-video" controls>
+                <source src="" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture vidéo.
+            </video>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT - Interactions & Données
+         ========================================== -->
+    <script>
+        // ==========================================
+        // DONNÉES JSON - Contenu du site
+        // ==========================================
+        const siteData = {
+            story: [
+                {
+                    title: "Première Rencontre",
+                    description: "Un hasard merveilleux dans un café parisien",
+                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3E2018%3C/text%3E%3C/svg%3E"
+                },
+                {
+                    title: "Premier Rendez-vous",
+                    description: "Une soirée inoubliable au bord de la Seine",
+                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3ERomance%3C/text%3E%3C/svg%3E"
+                },
+                {
+                    title: "Voyage en Italie",
+                    description: "Deux semaines magiques à découvrir Rome et Venise",
+                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3EVoyage%3C/text%3E%3C/svg%3E"
+                },
+                {
+                    title: "La Demande",
+                    description: "Un coucher de soleil sur les toits de Paris",
+                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3EProposition%3C/text%3E%3C/svg%3E"
+                },
+                {
+                    title: "Préparatifs",
+                    description: "Planning de notre plus beau jour ensemble",
+                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3EPr%C3%A9paration%3C/text%3E%3C/svg%3E"
+                }
+            ],
+            events: [
+                {
+                    type: "Cérémonie",
+                    title: "Cérémonie de Mariage",
+                    time: "15h00",
+                    location: "Église Saint-Germain-des-Prés",
+                    address: "3 Place Saint-Germain des Prés, 75006 Paris",
+                    mapsUrl: "https://maps.google.com/?q=Église+Saint-Germain-des-Prés+Paris",
+                    description: "La cérémonie aura lieu dans cette magnifique église historique du 6ème arrondissement."
+                },
+                {
+                    type: "Réception",
+                    title: "Cocktail & Réception",
+                    time: "18h00",
+                    location: "Château de Versailles",
+                    address: "Place d'Armes, 78000 Versailles",
+                    mapsUrl: "https://maps.google.com/?q=Château+de+Versailles",
+                    description: "Rejoignez-nous pour un cocktail dans les jardins, suivi d'un dîner gastronomique."
+                },
+                {
+                    type: "Soirée",
+                    title: "Soirée Dansante",
+                    time: "22h00",
+                    location: "Orangerie du Château",
+                    address: "Jardins du Château de Versailles",
+                    mapsUrl: "https://maps.google.com/?q=Orangerie+Versailles",
+                    description: "Dansons jusqu'au bout de la nuit dans un cadre exceptionnel."
+                }
+            ],
+            gallery: [
+                { title: "Paris", description: "Notre ville préférée", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3EParis%3C/text%3E%3C/svg%3E" },
+                { title: "Voyage", description: "Nos aventures", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3EVoyages%3C/text%3E%3C/svg%3E" },
+                { title: "Famille", description: "Moments précieux", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3EFamille%3C/text%3E%3C/svg%3E" },
+                { title: "Amis", description: "Rires et souvenirs", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3EAmis%3C/text%3E%3C/svg%3E" },
+                { title: "Nature", description: "Escapades champêtres", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3ENature%3C/text%3E%3C/svg%3E" }
+            ],
+            videos: [
+                { title: "Notre Histoire", description: "Vidéo montage", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%231f1f1f' width='400' height='225'/%3E%3Ccircle cx='200' cy='112.5' r='40' fill='%23e50914'/%3E%3Cpolygon points='185,95 220,112.5 185,130' fill='white'/%3E%3C/svg%3E", video: "intro" },
+                { title: "La Demande", description: "Moment magique", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%231f1f1f' width='400' height='225'/%3E%3Ccircle cx='200' cy='112.5' r='40' fill='%23e50914'/%3E%3Cpolygon points='185,95 220,112.5 185,130' fill='white'/%3E%3C/svg%3E", video: "proposal" },
+                { title: "Voyage Italie", description: "Aventure italienne", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%231f1f1f' width='400' height='225'/%3E%3Ccircle cx='200' cy='112.5' r='40' fill='%23e50914'/%3E%3Cpolygon points='185,95 220,112.5 185,130' fill='white'/%3E%3C/svg%3E", video: "italy" }
+            ],
+            gifts: [
+                { name: "Voyage de Noces", price: "Contribution libre", description: "Aidez-nous à réaliser notre voyage de rêve aux Maldives", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%232a2a2a' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='20'%3E%E2%9C%88%3C/text%3E%3C/svg%3E" },
+                { name: "Machine à Café", price: "250€", description: "Pour nos petits-déjeuners en amoureux", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%232a2a2a' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='50'%3E%E2%98%95%3C/text%3E%3C/svg%3E" },
+                { name: "Set de Vaisselle", price: "180€", description: "Service élégant pour 8 personnes", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%232a2a2a' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='50'%3E%F0%9F%8D%BD%3C/text%3E%3C/svg%3E" },
+                { name: "Plantes d'Intérieur", price: "80€", description: "Pour verdure notre nouveau chez-nous", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%232a2a2a' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='50'%3E%F0%9F%AA%B4%3C/text%3E%3C/svg%3E" },
+                { name: "Cours de Cuisine", price: "150€", description: "Atelier cuisine gastronomique pour deux", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%232a2a2a' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='50'%3E%F0%9F%91%A8%E2%80%8D%F0%9F%8D%B3%3C/text%3E%3C/svg%3E" },
+                { name: "Cadre Photo", price: "60€", description: "Pour immortaliser nos meilleurs souvenirs", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%232a2a2a' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='50'%3E%F0%9F%96%BC%3C/text%3E%3C/svg%3E" }
+            ]
+        };
+
+        // ==========================================
+        // HEADER - Scroll & Navigation mobile
+        // ==========================================
+        const header = document.querySelector('.header');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('.nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            const isExpanded = nav.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                nav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // ==========================================
+        // CAROUSEL - Gestion du défilement
+        // ==========================================
+        class Carousel {
+            constructor(name, data) {
+                this.name = name;
+                this.data = data;
+                this.currentIndex = 0;
+                this.track = document.querySelector(`[data-carousel-track="${name}"]`);
+                this.prevBtn = document.querySelector(`[data-carousel="${name}"][data-direction="prev"]`);
+                this.nextBtn = document.querySelector(`[data-carousel="${name}"][data-direction="next"]`);
+
+                this.init();
+            }
+
+            init() {
+                this.render();
+                this.attachEvents();
+                this.updateButtons();
+            }
+
+            render() {
+                this.track.innerHTML = this.data.map((item, index) => `
+                    <div class="carousel-card" role="listitem" ${item.video ? `data-video="${item.video}"` : ''}>
+                        <img
+                            src="${item.image}"
+                            alt="${item.title}"
+                            class="carousel-card-image lazy-load"
+                            loading="lazy"
+                        >
+                        <div class="carousel-card-content">
+                            <h4 class="carousel-card-title">${item.title}</h4>
+                            <p class="carousel-card-description">${item.description}</p>
+                        </div>
+                    </div>
+                `).join('');
+
+                setTimeout(() => {
+                    document.querySelectorAll('.lazy-load').forEach(img => {
+                        img.classList.add('loaded');
+                    });
+                }, 100);
+
+                document.querySelectorAll('[data-video]').forEach(card => {
+                    card.addEventListener('click', () => {
+                        openVideoModal(card.dataset.video);
+                    });
+                    card.style.cursor = 'pointer';
+                });
+            }
+
+            attachEvents() {
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+
+                this.track.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.prev();
+                    if (e.key === 'ArrowRight') this.next();
+                });
+            }
+
+            prev() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                    this.updatePosition();
+                }
+            }
+
+            next() {
+                const cardWidth = this.track.firstElementChild.offsetWidth;
+                const gap = 16;
+                const visibleCards = Math.floor(this.track.parentElement.offsetWidth / (cardWidth + gap));
+                const maxIndex = Math.max(0, this.data.length - visibleCards);
+
+                if (this.currentIndex < maxIndex) {
+                    this.currentIndex++;
+                    this.updatePosition();
+                }
+            }
+
+            updatePosition() {
+                const cardWidth = this.track.firstElementChild.offsetWidth;
+                const gap = 16;
+                const offset = -(this.currentIndex * (cardWidth + gap));
+                this.track.style.transform = `translateX(${offset}px)`;
+                this.updateButtons();
+            }
+
+            updateButtons() {
+                const cardWidth = this.track.firstElementChild.offsetWidth;
+                const gap = 16;
+                const visibleCards = Math.floor(this.track.parentElement.offsetWidth / (cardWidth + gap));
+                const maxIndex = Math.max(0, this.data.length - visibleCards);
+
+                this.prevBtn.disabled = this.currentIndex === 0;
+                this.nextBtn.disabled = this.currentIndex >= maxIndex;
+            }
+        }
+
+        new Carousel('story', siteData.story);
+        new Carousel('gallery', siteData.gallery);
+        new Carousel('videos', siteData.videos);
+
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.carousel-track').forEach(track => {
+                track.style.transform = 'translateX(0)';
+            });
+        });
+
+        // ==========================================
+        // ÉVÉNEMENTS - Génération dynamique
+        // ==========================================
+        const eventsGrid = document.querySelector('.events-grid');
+        eventsGrid.innerHTML = siteData.events.map(event => `
+            <article class="event-card" role="listitem">
+                <div class="event-card-header">
+                    <p class="event-type">${event.type}</p>
+                    <h3 class="event-title">${event.title}</h3>
+                </div>
+                <div class="event-card-body">
+                    <div class="event-info">
+                        <span class="event-icon" aria-hidden="true">🕐</span>
+                        <div class="event-details">
+                            <h4>Horaire</h4>
+                            <p>${event.time}</p>
+                        </div>
+                    </div>
+                    <div class="event-info">
+                        <span class="event-icon" aria-hidden="true">📍</span>
+                        <div class="event-details">
+                            <h4>Lieu</h4>
+                            <p>${event.location}</p>
+                            <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 4px;">
+                                ${event.address}
+                            </p>
+                        </div>
+                    </div>
+                    <p style="margin-top: calc(var(--spacing-unit) * 2); color: var(--color-text-secondary);">
+                        ${event.description}
+                    </p>
+                    <a href="${event.mapsUrl}" target="_blank" rel="noopener noreferrer" class="event-link">
+                        Voir sur Google Maps
+                        <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </article>
+        `).join('');
+
+        // ==========================================
+        // CADEAUX - Génération dynamique
+        // ==========================================
+        const giftsGrid = document.querySelector('.gifts-grid');
+        giftsGrid.innerHTML = siteData.gifts.map(gift => `
+            <article class="gift-card" role="listitem">
+                <img src="${gift.image}" alt="${gift.name}" class="gift-image lazy-load">
+                <div class="gift-content">
+                    <h3 class="gift-name">${gift.name}</h3>
+                    <p class="gift-price">${gift.price}</p>
+                    <p class="gift-description">${gift.description}</p>
+                    <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="alert('Merci pour votre générosité ! Cette fonctionnalité sera bientôt disponible.')">
+                        Contribuer
+                    </button>
+                </div>
+            </article>
+        `).join('');
+
+        // ==========================================
+        // FORMULAIRE RSVP - Validation & Soumission
+        // ==========================================
+        const rsvpForm = document.getElementById('rsvp-form');
+        const formSuccess = document.getElementById('form-success');
+
+        rsvpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(rsvpForm);
+            const data = Object.fromEntries(formData);
+
+            console.log('RSVP Data:', data);
+
+            formSuccess.style.display = 'block';
+            rsvpForm.reset();
+
+            setTimeout(() => {
+                formSuccess.style.display = 'none';
+            }, 5000);
+
+            rsvpForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // ==========================================
+        // VIDEO MODAL - Lecture vidéo
+        // ==========================================
+        const videoModal = document.getElementById('video-modal');
+        const modalVideo = videoModal.querySelector('.modal-video');
+        const modalClose = videoModal.querySelector('.modal-close');
+
+        function openVideoModal(videoId) {
+            videoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            modalVideo.querySelector('source').src = `https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`;
+            modalVideo.load();
+            modalVideo.play();
+        }
+
+        function closeVideoModal() {
+            videoModal.classList.remove('active');
+            document.body.style.overflow = '';
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        }
+
+        modalClose.addEventListener('click', closeVideoModal);
+
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeVideoModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                closeVideoModal();
+            }
+        });
+
+        document.querySelectorAll('[data-video]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                openVideoModal(btn.dataset.video);
+            });
+        });
+
+        // ==========================================
+        // LAZY LOADING - Images
+        // ==========================================
+        const lazyImages = document.querySelectorAll('.lazy-load');
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loaded');
+                    imageObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        lazyImages.forEach(img => imageObserver.observe(img));
+
+        // ==========================================
+        // SMOOTH SCROLL - Liens d'ancrage
+        // ==========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 70;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        console.log('%c🎉 Site de Mariage Sophie & Alexandre', 'font-size: 20px; font-weight: bold; color: #e50914;');
+        console.log('%cDesign inspiré Netflix - Code propre et accessible', 'font-size: 14px; color: #b3b3b3;');
+    </script>
+</body>
+</html>

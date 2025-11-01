@@ -1,0 +1,1796 @@
+/* ==========================================
+   CSS VARIABLES - Couleurs & Typographie
+   ========================================== */
+:root {
+    --color-primary: #000;
+    --color-surface: #141414;
+    --color-surface-hover: #1f1f1f;
+    --color-accent: #e50914;
+    --color-accent-hover: #f40612;
+    --color-text: #ffffff;
+    --color-text-secondary: #e6e6e6;
+    --color-text-muted: #b3b3b3;
+    --spacing-unit: 8px;
+    --header-height: 70px;
+    --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+/* ==========================================
+   RESET & BASE STYLES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ==========================================
+   HEADER - Navigation fixe
+   ========================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    z-index: 1000;
+    transition: background-color var(--transition-speed);
+}
+
+.header.scrolled {
+    background-color: var(--color-primary);
+}
+
+.header-content {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 calc(var(--spacing-unit) * 6);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--color-accent);
+}
+
+.nav {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 3);
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color var(--transition-speed);
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--color-text-muted);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    color: var(--color-text);
+    font-size: 1.5rem;
+    padding: calc(var(--spacing-unit) * 1);
+}
+
+/* ==========================================
+   HERO SECTION - Plein écran avec vidéo
+   ========================================== */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%);
+    z-index: 3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 6);
+}
+
+.hero-top-info {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 2);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+}
+
+.hero-label {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1);
+    font-size: 1.3rem;
+}
+
+.hero-label::before {
+    content: '●';
+    font-size: 0.8rem;
+    color: var(--color-accent);
+}
+
+.hero-stars {
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+}
+
+.hero-bottom-content {
+    text-align: center;
+    max-width: 100%;
+}
+
+.hero-title {
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    letter-spacing: 2px;
+    line-height: 1.1;
+    font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
+    color: #ffffff;
+    text-shadow: 
+        0 0 10px rgba(0, 0, 0, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.6);
+    position: relative;
+    text-transform: none;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: calc(var(--spacing-unit) * 4);
+    font-weight: 300;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero-date {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    margin-top: calc(var(--spacing-unit) * 2);
+}
+
+.hero-actions {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1);
+}
+
+.btn-primary {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--color-accent-hover);
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================
+   SECTION COMMUNE
+   ========================================== */
+.section {
+    padding: calc(var(--spacing-unit) * 10) calc(var(--spacing-unit) * 6);
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.section-header {
+    margin-bottom: calc(var(--spacing-unit) * 5);
+}
+
+.section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    letter-spacing: -1px;
+}
+
+.story-text-section .section-title {
+    font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-description {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    max-width: 800px;
+}
+
+/* ==========================================
+   CAROUSEL - Défilement horizontal
+   ========================================== */
+.carousel-container {
+    position: relative;
+    margin-bottom: calc(var(--spacing-unit) * 8);
+}
+
+.carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.carousel-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.carousel-controls {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 1);
+}
+
+.carousel-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed);
+}
+
+.carousel-btn:hover,
+.carousel-btn:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.carousel-card {
+    flex: 0 0 calc(25% - calc(var(--spacing-unit) * 1.5));
+    min-width: 250px;
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    cursor: pointer;
+}
+
+.carousel-card:hover,
+.carousel-card:focus-within {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    z-index: 10;
+}
+
+.carousel-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
+}
+
+.carousel-card-content {
+    padding: calc(var(--spacing-unit) * 2);
+}
+
+.carousel-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: calc(var(--spacing-unit) * 1);
+}
+
+.carousel-card-description {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* ==========================================
+   EVENTS SECTION - Liste détaillée
+   ========================================== */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: calc(var(--spacing-unit) * 3);
+}
+
+.event-card {
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform var(--transition-speed);
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+}
+
+.event-card-header {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #b20710 100%);
+    padding: calc(var(--spacing-unit) * 3);
+    position: relative;
+}
+
+.event-type {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-bottom: calc(var(--spacing-unit) * 1);
+}
+
+.event-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.event-card-body {
+    padding: calc(var(--spacing-unit) * 3);
+}
+
+.event-info {
+    display: flex;
+    align-items: flex-start;
+    gap: calc(var(--spacing-unit) * 2);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.event-icon {
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+.event-details h4 {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 4px;
+}
+
+.event-details p {
+    font-size: 1rem;
+}
+
+.event-link {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: calc(var(--spacing-unit) * 2);
+    transition: opacity var(--transition-speed);
+}
+
+.event-link:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================
+   RSVP FORM
+   ========================================== */
+.rsvp-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--color-surface);
+    padding: calc(var(--spacing-unit) * 6);
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.form-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: calc(var(--spacing-unit) * 1);
+    color: var(--color-text-secondary);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: calc(var(--spacing-unit) * 2);
+    background-color: var(--color-primary);
+    border: 2px solid transparent;
+    border-radius: 4px;
+    color: var(--color-text);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-radio-group {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 3);
+}
+
+.form-radio-label {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1);
+    cursor: pointer;
+}
+
+.form-radio {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-accent);
+}
+
+.form-success {
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    padding: calc(var(--spacing-unit) * 2);
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+/* ==========================================
+   GIFT REGISTRY - Grille de produits
+   ========================================== */
+.gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: calc(var(--spacing-unit) * 3);
+}
+
+.gift-card {
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform var(--transition-speed);
+}
+
+.gift-card:hover {
+    transform: translateY(-4px);
+}
+
+.gift-image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+}
+
+.gift-content {
+    padding: calc(var(--spacing-unit) * 3);
+}
+
+.gift-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: calc(var(--spacing-unit) * 1);
+}
+
+.gift-price {
+    color: var(--color-accent);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.gift-description {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+/* ==========================================
+   INVITATION SECTION - Style élégant
+   ========================================== */
+.invitation-section {
+    padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 6);
+    background-color: var(--color-primary);
+}
+
+.invitation-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: calc(var(--spacing-unit) * 8);
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 70vh;
+}
+
+.invitation-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.invitation-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.8s ease-in-out, filter var(--transition-speed);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+}
+
+.invitation-image.fade-out {
+    opacity: 0;
+}
+
+.invitation-image.fade-in {
+    opacity: 1;
+}
+
+.invitation-image-wrapper:hover .invitation-image {
+    filter: grayscale(70%);
+}
+
+.invitation-vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 30%,
+        rgba(0, 0, 0, 0.15) 50%,
+        rgba(0, 0, 0, 0.4) 70%,
+        rgba(0, 0, 0, 0.7) 85%,
+        rgba(0, 0, 0, 0.9) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.invitation-carousel-indicators {
+    position: absolute;
+    bottom: calc(var(--spacing-unit) * 3);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: calc(var(--spacing-unit) * 1.5);
+    z-index: 10;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    padding: 0;
+}
+
+.carousel-indicator:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.carousel-indicator.active {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.invitation-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: calc(var(--spacing-unit) * 4);
+    color: var(--color-text);
+}
+
+.invitation-date {
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-bottom: calc(var(--spacing-unit) * 4);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.invitation-title {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
+    margin-bottom: calc(var(--spacing-unit) * 6);
+    text-align: center;
+    color: var(--color-text);
+    line-height: 1.2;
+}
+
+.invitation-message {
+    margin-bottom: calc(var(--spacing-unit) * 6);
+    line-height: 1.8;
+    text-align: center;
+}
+
+.invitation-message p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+.highlight-date {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.invitation-details {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 2);
+    margin-bottom: calc(var(--spacing-unit) * 6);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    align-items: center;
+}
+
+.invitation-detail-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing-unit) * 2);
+}
+
+.sparkle-icon,
+.clock-icon {
+    font-size: 1rem;
+}
+
+.invitation-rsvp-btn {
+    background-color: white;
+    color: var(--color-primary);
+    border: none;
+    border-radius: 8px;
+    padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 6);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing-unit) * 2);
+    transition: all var(--transition-speed);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.invitation-rsvp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.play-icon {
+    font-size: 0.8rem;
+    color: var(--color-primary);
+}
+
+/* ==========================================
+   STORY TEXT SECTION
+   ========================================== */
+.story-text-section {
+    margin-top: calc(var(--spacing-unit) * 12);
+    padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 6);
+}
+
+.story-text-section .section-header {
+    text-align: center;
+    margin-bottom: calc(var(--spacing-unit) * 6);
+}
+
+.story-content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.story-content {
+    text-align: center;
+}
+
+.story-subtitle {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    margin-bottom: calc(var(--spacing-unit) * 5);
+    color: var(--color-text);
+    font-family: 'Brush Script MT', 'Lucida Handwriting', 'Georgia', cursive;
+}
+
+.story-text {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.story-text p {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 2;
+    color: var(--color-text-secondary);
+    margin-bottom: calc(var(--spacing-unit) * 4);
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+.story-conclusion {
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem) !important;
+    font-weight: 600 !important;
+    color: var(--color-text) !important;
+    margin-top: calc(var(--spacing-unit) * 6) !important;
+    padding-top: calc(var(--spacing-unit) * 4);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center !important;
+}
+
+/* ==========================================
+   CEREMONY LOCATIONS SECTION
+   ========================================== */
+.ceremony-locations-section {
+    padding: calc(var(--spacing-unit) * 12) calc(var(--spacing-unit) * 6);
+    background-color: var(--color-primary);
+    position: relative;
+}
+
+.ceremony-locations-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.ceremony-locations-header {
+    text-align: center;
+    margin-bottom: calc(var(--spacing-unit) * 10);
+}
+
+.ceremony-locations-title {
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 400;
+    color: #ff0000;
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Black', sans-serif;
+    line-height: 0.95;
+    display: flex;
+    flex-direction: column;
+    text-shadow: 
+        0 0 10px rgba(255, 0, 0, 0.3),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+.ceremony-locations-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 1px,
+            rgba(0, 0, 0, 0.05) 1px,
+            rgba(0, 0, 0, 0.05) 2px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 1px,
+            rgba(0, 0, 0, 0.02) 1px,
+            rgba(0, 0, 0, 0.02) 2px
+        );
+    pointer-events: none;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+}
+
+.ceremony-title-line-1,
+.ceremony-title-line-2 {
+    display: block;
+    position: relative;
+}
+
+.ceremony-title-line-1 {
+    margin-bottom: calc(var(--spacing-unit) * 1);
+}
+
+.ceremony-locations-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: #d4af37;
+    font-weight: 400;
+    letter-spacing: 8px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    text-transform: uppercase;
+    margin-top: calc(var(--spacing-unit) * 2);
+}
+
+.ceremony-locations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--spacing-unit) * 4);
+    margin-top: calc(var(--spacing-unit) * 6);
+}
+
+.ceremony-location-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.ceremony-location-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.ceremony-location-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+}
+
+.ceremony-location-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 1;
+}
+
+.ceremony-location-number {
+    position: absolute;
+    top: calc(var(--spacing-unit) * 3);
+    left: calc(var(--spacing-unit) * 3);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-text);
+    z-index: 10;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    line-height: 1;
+}
+
+.ceremony-location-content {
+    padding: calc(var(--spacing-unit) * 4);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+}
+
+.ceremony-location-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ceremony-location-name {
+    font-size: 1rem;
+    color: #d4af37;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+}
+
+.ceremony-location-btn {
+    background-color: #ffffff;
+    border: none;
+    color: #000000;
+    padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 5);
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing-unit) * 2);
+    transition: all var(--transition-speed);
+    width: 100%;
+    margin-top: calc(var(--spacing-unit) * 3);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.ceremony-location-wrapper .ceremony-location-btn {
+    margin-top: calc(var(--spacing-unit) * 3);
+}
+
+.ceremony-location-btn:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.play-icon-btn {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    flex-shrink: 0;
+    color: #000000;
+}
+
+/* ==========================================
+   WEDDING PROGRAM SECTION
+   ========================================== */
+.wedding-program-section {
+    padding: calc(var(--spacing-unit) * 12) calc(var(--spacing-unit) * 6);
+    background-color: var(--color-primary);
+    position: relative;
+}
+
+.wedding-program-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 8);
+}
+
+.polaroid-photos-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    margin-bottom: calc(var(--spacing-unit) * 6);
+}
+
+.polaroid-photo {
+    position: absolute;
+    background-color: #ffffff;
+    padding: calc(var(--spacing-unit) * 2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    border-radius: 2px;
+    transition: transform var(--transition-speed);
+}
+
+.polaroid-photo img {
+    width: 280px;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+}
+
+.polaroid-photo-1 {
+    transform: rotate(-8deg) translateX(-80px);
+    z-index: 1;
+}
+
+.polaroid-photo-1:hover {
+    transform: rotate(-8deg) translateX(-80px) scale(1.05);
+    z-index: 4;
+}
+
+.polaroid-photo-2 {
+    transform: rotate(2deg) translateX(0);
+    z-index: 3;
+    width: 300px;
+    height: 370px;
+}
+
+.polaroid-photo-2 img {
+    width: 300px;
+    height: 370px;
+}
+
+.polaroid-photo-2:hover {
+    transform: rotate(2deg) translateX(0) scale(1.05);
+    z-index: 4;
+}
+
+.polaroid-photo-3 {
+    transform: rotate(8deg) translateX(80px);
+    z-index: 2;
+}
+
+.polaroid-photo-3:hover {
+    transform: rotate(8deg) translateX(80px) scale(1.05);
+    z-index: 4;
+}
+
+.wedding-program-content {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 4);
+    max-width: 800px;
+    margin-left: 0;
+}
+
+.program-label {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    width: fit-content;
+    border-radius: 4px;
+}
+
+.program-title-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 1);
+}
+
+.program-title-main {
+    font-family: 'Great Vibes', 'Brush Script MT', cursive;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.program-title-subtitle {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 600;
+    color: #4ade80;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.program-buttons {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 3);
+    align-items: center;
+}
+
+.program-btn {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1.5);
+    padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 4);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    border: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.program-btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.program-btn-primary {
+    background-color: var(--color-accent);
+    color: #ffffff;
+}
+
+.program-btn-primary:hover {
+    background-color: #b8070f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+}
+
+.program-btn-secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.program-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   WEDDING PROGRAM DETAILS SECTION
+   ========================================== */
+.wedding-program-details-section {
+    padding: calc(var(--spacing-unit) * 12) calc(var(--spacing-unit) * 6);
+    background-color: var(--color-primary);
+    min-height: 100vh;
+}
+
+.program-details-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    gap: calc(var(--spacing-unit) * 6);
+    align-items: start;
+}
+
+.program-portrait {
+    position: sticky;
+    top: calc(var(--spacing-unit) * 8);
+    height: fit-content;
+}
+
+.portrait-image {
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+    object-fit: cover;
+    border-radius: 4px;
+    aspect-ratio: 2/3;
+}
+
+.program-portrait-left .portrait-image {
+    border-radius: 8px 0 0 8px;
+}
+
+.program-portrait-right .portrait-image {
+    border-radius: 0 8px 8px 0;
+}
+
+.program-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 8);
+    padding: calc(var(--spacing-unit) * 4) 0;
+}
+
+.program-event-item {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 3);
+}
+
+.program-event-image-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.program-event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-speed);
+}
+
+.program-event-item:hover .program-event-image {
+    transform: scale(1.05);
+}
+
+.program-event-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.program-event-time {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 500;
+    color: #ffd700;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* ==========================================
+   VIDEO MODAL
+   ========================================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--spacing-unit) * 3);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+}
+
+.modal-video {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.modal-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: transparent;
+    color: var(--color-text);
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity var(--transition-speed);
+}
+
+.modal-close:hover {
+    opacity: 0.7;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer {
+    background-color: var(--color-surface);
+    padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 6);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: calc(var(--spacing-unit) * 6);
+}
+
+.footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: calc(var(--spacing-unit) * 1);
+}
+
+.footer-links a {
+    color: var(--color-text-muted);
+    transition: color var(--transition-speed);
+}
+
+.footer-links a:hover {
+    color: var(--color-text);
+}
+
+.social-links {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+    margin-top: calc(var(--spacing-unit) * 2);
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-speed);
+}
+
+.social-link:hover {
+    background-color: var(--color-accent);
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: calc(var(--spacing-unit) * 6) auto 0;
+    padding-top: calc(var(--spacing-unit) * 4);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+/* ==========================================
+   RESPONSIVE - Mobile First
+   ========================================== */
+@media (max-width: 1024px) {
+    .carousel-card {
+        flex: 0 0 calc(33.333% - calc(var(--spacing-unit) * 1.5));
+    }
+
+    .invitation-container {
+        grid-template-columns: 1fr;
+        gap: calc(var(--spacing-unit) * 6);
+        min-height: auto;
+    }
+
+    .invitation-image-wrapper {
+        min-height: 400px;
+        order: 2;
+    }
+
+    .invitation-content {
+        order: 1;
+    }
+
+    .ceremony-locations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: calc(var(--spacing-unit) * 3);
+    }
+
+    .wedding-program-section {
+        padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 4);
+    }
+
+    .polaroid-photos-wrapper {
+        height: 350px;
+    }
+
+    .polaroid-photo img {
+        width: 220px;
+        height: 280px;
+    }
+
+    .polaroid-photo-2 {
+        width: 240px;
+        height: 300px;
+    }
+
+    .polaroid-photo-2 img {
+        width: 240px;
+        height: 300px;
+    }
+
+    .polaroid-photo-1 {
+        transform: rotate(-8deg) translateX(-60px);
+    }
+
+    .polaroid-photo-3 {
+        transform: rotate(8deg) translateX(60px);
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 calc(var(--spacing-unit) * 3);
+    }
+
+    .nav {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        background-color: var(--color-primary);
+        flex-direction: column;
+        padding: calc(var(--spacing-unit) * 3);
+        transform: translateX(-100%);
+        transition: transform var(--transition-speed);
+    }
+
+    .nav.active {
+        transform: translateX(0);
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero-content {
+        padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3);
+    }
+
+    .hero-top-info {
+        font-size: 1.25rem;
+        gap: calc(var(--spacing-unit) * 1.5);
+    }
+
+    .hero-label {
+        font-size: 1.25rem;
+    }
+
+    .hero-stars {
+        font-size: 1.4rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 15vw, 4rem);
+        letter-spacing: 1px;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        margin-bottom: calc(var(--spacing-unit) * 1.5);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        margin-bottom: calc(var(--spacing-unit) * 3);
+    }
+
+    .hero-date {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        letter-spacing: 2px;
+        margin-top: calc(var(--spacing-unit) * 1.5);
+    }
+
+    .section {
+        padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 3);
+    }
+
+    .invitation-section {
+        padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 3);
+    }
+
+    .invitation-image-wrapper {
+        min-height: 350px;
+    }
+
+    .invitation-title {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+        margin-bottom: calc(var(--spacing-unit) * 4);
+    }
+
+    .invitation-message p {
+        font-size: 0.85rem;
+    }
+
+    .wedding-program-section {
+        padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 3);
+    }
+
+    .polaroid-photos-wrapper {
+        height: 280px;
+        margin-bottom: calc(var(--spacing-unit) * 4);
+    }
+
+    .polaroid-photo img {
+        width: 160px;
+        height: 200px;
+    }
+
+    .polaroid-photo-2 {
+        width: 180px;
+        height: 220px;
+    }
+
+    .polaroid-photo-2 img {
+        width: 180px;
+        height: 220px;
+    }
+
+    .polaroid-photo-1 {
+        transform: rotate(-8deg) translateX(-40px);
+    }
+
+    .polaroid-photo-3 {
+        transform: rotate(8deg) translateX(40px);
+    }
+
+    .program-title-main {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+
+    .program-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .program-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .wedding-program-details-section {
+        padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 3);
+    }
+
+    .program-details-container {
+        grid-template-columns: 1fr;
+        gap: calc(var(--spacing-unit) * 6);
+    }
+
+    .program-portrait {
+        position: relative;
+        top: 0;
+        display: none;
+    }
+
+    .program-events-list {
+        gap: calc(var(--spacing-unit) * 6);
+    }
+
+    .program-event-image-wrapper {
+        height: 180px;
+    }
+
+    .invitation-rsvp-btn {
+        padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 4);
+        font-size: 0.9rem;
+    }
+
+    .story-text-section {
+        padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 3);
+        margin-top: calc(var(--spacing-unit) * 8);
+    }
+
+    .story-text {
+        text-align: center;
+    }
+
+    .story-text p {
+        text-align: left;
+        font-size: 1rem;
+    }
+
+    .carousel-card {
+        flex: 0 0 calc(50% - calc(var(--spacing-unit) * 1));
+        min-width: 200px;
+    }
+
+    .ceremony-locations-section {
+        padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 3);
+    }
+
+    .ceremony-locations-title {
+        font-size: clamp(2.5rem, 12vw, 5rem);
+        letter-spacing: 2px;
+    }
+
+    .ceremony-locations-subtitle {
+        font-size: clamp(0.9rem, 3vw, 1.2rem);
+        letter-spacing: 4px;
+    }
+
+    .ceremony-locations-grid {
+        grid-template-columns: 1fr;
+        gap: calc(var(--spacing-unit) * 4);
+    }
+
+    .ceremony-location-image-wrapper {
+        height: 250px;
+    }
+
+    .ceremony-location-number {
+        font-size: 3rem;
+    }
+
+    .events-grid,
+    .gifts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rsvp-container {
+        padding: calc(var(--spacing-unit) * 4);
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-card {
+        flex: 0 0 calc(100% - calc(var(--spacing-unit) * 1));
+    }
+}
+
+/* ==========================================
+   UTILITIES & ACCESSIBILITY
+   ========================================== */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
