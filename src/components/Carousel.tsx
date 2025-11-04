@@ -141,12 +141,14 @@ const Carousel = ({ title, items, carouselId, onItemClick }: CarouselProps) => {
                   ×
                 </button>
               )}
-              <img
-                src={item.image}
-                alt={item.title}
-                className="carousel-card-image lazy-load loaded"
-                loading="lazy"
-              />
+              <div className="carousel-card-image-container">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="carousel-card-image lazy-load loaded"
+                  loading="lazy"
+                />
+              </div>
               <div className="carousel-card-content">
                 <h4 className="carousel-card-title">{item.title}</h4>
                 <p className="carousel-card-description">{item.description}</p>

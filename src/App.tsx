@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import Story from './components/Story';
 import CeremonyLocations from './components/CeremonyLocations';
 import WeddingProgram from './components/WeddingProgram';
-import WeddingProgramDetails from './components/WeddingProgramDetails';
 import Events from './components/Events';
 import Gallery from './components/Gallery';
 import RSVP from './components/RSVP';
@@ -18,7 +17,6 @@ function App() {
   const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
   const [existingPhotos, setExistingPhotos] = useState<GalleryItem[]>([]);
   const [uploadedPhotos, setUploadedPhotos] = useState<GalleryItem[]>([]);
-  const [loading, setLoading] = useState(true);
 
   // Charger toutes les photos depuis le serveur au démarrage
   useEffect(() => {
@@ -39,8 +37,6 @@ function App() {
         }
       } catch (error) {
         console.error('Erreur lors du chargement des photos:', error);
-      } finally {
-        setLoading(false);
       }
     };
     loadPhotos();
@@ -96,7 +92,6 @@ function App() {
             <Story storyData={siteData.story} onVideoClick={handleVideoClick} />
             <CeremonyLocations />
             <WeddingProgram onVideoClick={handleVideoClick} />
-            <WeddingProgramDetails />
             <Events events={siteData.events} />
             <Gallery
               gallery={allGalleryItems}

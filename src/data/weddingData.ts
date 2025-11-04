@@ -75,27 +75,27 @@ export const siteData: WeddingData = {
       type: "Cérémonie",
       title: "Cérémonie de Mariage",
       time: "15h00",
-      location: "Salle des fêtes Roméo",
+      location: "Salle de Fêtes Albertine Square",
       address: "Kinshasa, République Démocratique du Congo",
-      mapsUrl: "https://maps.google.com/?q=Salle+des+fêtes+Roméo+Kinshasa",
+      mapsUrl: "https://maps.google.com/?q=Salle+de+Fêtes+Albertine+Square+Kinshasa",
       description: "La cérémonie aura lieu dans cette magnifique salle des fêtes à Kinshasa."
     },
     {
       type: "Réception",
       title: "Cocktail & Réception",
       time: "18h00",
-      location: "Salle des fêtes Roméo",
+      location: "Salle de Fêtes Albertine Square",
       address: "Kinshasa, République Démocratique du Congo",
-      mapsUrl: "https://maps.google.com/?q=Salle+des+fêtes+Roméo+Kinshasa",
+      mapsUrl: "https://maps.google.com/?q=Salle+de+Fêtes+Albertine+Square+Kinshasa",
       description: "Rejoignez-nous pour un cocktail et un dîner de célébration."
     },
     {
       type: "Soirée",
       title: "Soirée Dansante",
       time: "22h00",
-      location: "Salle des fêtes Roméo",
+      location: "Salle de Fêtes Albertine Square",
       address: "Kinshasa, République Démocratique du Congo",
-      mapsUrl: "https://maps.google.com/?q=Salle+des+fêtes+Roméo+Kinshasa",
+      mapsUrl: "https://maps.google.com/?q=Salle+de+Fêtes+Albertine+Square+Kinshasa",
       description: "Dansons jusqu'au bout de la nuit pour célébrer ce jour exceptionnel."
     }
   ],

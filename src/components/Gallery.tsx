@@ -71,129 +71,168 @@ const Gallery = ({ gallery, videos, onVideoClick, onAddPhoto, onRemovePhoto, upl
   const baseGalleryLength = existingPhotosCount;
 
   return (
-    <section id="gallery" className="section" aria-labelledby="gallery-title">
-      <div className="section-header">
-        <h2 id="gallery-title" className="section-title">Galerie</h2>
-        <p className="section-description">
-          Nos plus beaux souvenirs en images
-        </p>
-        <button
-          onClick={() => setShowUploadForm(!showUploadForm)}
-          className="gallery-upload-btn"
-          style={{
-            marginTop: '1rem',
-            padding: '0.75rem 1.5rem',
-            backgroundColor: '#e50914',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '1rem',
-            fontWeight: '600',
-            transition: 'background-color 0.2s'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f40612'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#e50914'}
-        >
-          {showUploadForm ? 'Annuler' : '+ Ajouter une photo'}
-        </button>
-      </div>
+    <section id="gallery" className="gallery-section-modern" aria-labelledby="gallery-title">
+      <div className="gallery-container-modern">
+        {/* En-tête */}
+        <div className="gallery-header-modern">
+          <div className="gallery-title-wrapper">
+            <h2 id="gallery-title" className="gallery-title-modern">Galerie</h2>
+            <p className="gallery-subtitle-modern">
+              Nos plus beaux souvenirs en images
+            </p>
+          </div>
+          <button
+            onClick={() => setShowUploadForm(!showUploadForm)}
+            className="gallery-upload-btn-modern"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {showUploadForm ? (
+                <path d="M18 6L6 18M6 6l12 12"/>
+              ) : (
+                <>
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </>
+              )}
+            </svg>
+            <span>{showUploadForm ? 'Annuler' : 'Ajouter une photo'}</span>
+          </button>
+        </div>
 
-      {showUploadForm && (
-        <div className="gallery-upload-form" style={{
-          margin: '2rem 0',
-          padding: '2rem',
-          backgroundColor: '#1a1a1a',
-          borderRadius: '8px',
-          border: '1px solid #333'
-        }}>
-          <h3 style={{ marginBottom: '1.5rem', color: '#fff' }}>Ajouter une photo</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#ccc' }}>
-                Titre (optionnel)
-              </label>
-              <input
-                ref={titleInputRef}
-                type="text"
-                placeholder="Ex: Moment magique"
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  backgroundColor: '#2a2a2a',
-                  border: '1px solid #444',
-                  borderRadius: '4px',
-                  color: '#fff',
-                  fontSize: '1rem'
-                }}
-              />
+        {/* Formulaire d'upload moderne */}
+        {showUploadForm && (
+          <div className="gallery-upload-form-modern">
+            <div className="upload-form-header">
+              <h3>Partager un souvenir</h3>
+              <p>Ajoutez une photo pour immortaliser ce moment</p>
             </div>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#ccc' }}>
-                Description (optionnelle)
-              </label>
-              <input
-                ref={descriptionInputRef}
-                type="text"
-                placeholder="Ex: Un souvenir inoubliable"
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  backgroundColor: '#2a2a2a',
-                  border: '1px solid #444',
-                  borderRadius: '4px',
-                  color: '#fff',
-                  fontSize: '1rem'
-                }}
-              />
+            <div className="upload-form-content">
+              <div className="upload-file-area">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileSelect}
+                  disabled={uploading}
+                  id="gallery-file-input"
+                  className="upload-file-input"
+                />
+                <label htmlFor="gallery-file-input" className="upload-file-label">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  <span className="upload-file-text">
+                    {uploading ? 'Upload en cours...' : 'Cliquez ou glissez une image ici'}
+                  </span>
+                </label>
+              </div>
+              <div className="upload-form-fields">
+                <div className="upload-field">
+                  <label>Titre (optionnel)</label>
+                  <input
+                    ref={titleInputRef}
+                    type="text"
+                    placeholder="Ex: Moment magique"
+                    className="upload-input"
+                  />
+                </div>
+                <div className="upload-field">
+                  <label>Description (optionnelle)</label>
+                  <input
+                    ref={descriptionInputRef}
+                    type="text"
+                    placeholder="Ex: Un souvenir inoubliable"
+                    className="upload-input"
+                  />
+                </div>
+              </div>
             </div>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#ccc' }}>
-                Photo
-              </label>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleFileSelect}
-                disabled={uploading}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  backgroundColor: '#2a2a2a',
-                  border: '1px solid #444',
-                  borderRadius: '4px',
-                  color: '#fff',
-                  cursor: uploading ? 'not-allowed' : 'pointer'
-                }}
-              />
-            </div>
-            {uploading && (
-              <p style={{ color: '#ccc', fontStyle: 'italic' }}>Upload en cours...</p>
-            )}
+          </div>
+        )}
+
+        {/* Grille de photos moderne */}
+        <div className="gallery-grid-modern">
+          {gallery.map((item, index) => {
+            const isUploaded = index >= baseGalleryLength;
+            return (
+              <div
+                key={index}
+                className="gallery-item-modern"
+                style={{ '--item-index': index } as React.CSSProperties}
+              >
+                <div className="gallery-item-inner">
+                  <div className="gallery-item-image-wrapper">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="gallery-item-image"
+                      loading="lazy"
+                    />
+                    <div className="gallery-item-overlay"></div>
+                    {isUploaded && (
+                      <button
+                        className="gallery-item-delete"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (window.confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+                            onRemovePhoto(index - baseGalleryLength);
+                          }
+                        }}
+                        aria-label="Supprimer la photo"
+                      >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                  <div className="gallery-item-content">
+                    <h4 className="gallery-item-title">{item.title}</h4>
+                    <p className="gallery-item-description">{item.description}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Section Vidéos */}
+        <div className="gallery-videos-section">
+          <h3 className="gallery-videos-title">Vidéos</h3>
+          <div className="gallery-videos-grid">
+            {videos.map((video, index) => (
+              <div
+                key={index}
+                className="gallery-video-item"
+                onClick={() => onVideoClick(video.video)}
+                style={{ '--video-index': index } as React.CSSProperties}
+              >
+                <div className="video-item-image-wrapper">
+                  <img
+                    src={video.image}
+                    alt={video.title}
+                    className="video-item-image"
+                    loading="lazy"
+                  />
+                  <div className="video-item-overlay"></div>
+                  <div className="video-play-button">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="white">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div className="video-item-content">
+                  <h4 className="video-item-title">{video.title}</h4>
+                  <p className="video-item-description">{video.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      )}
-
-      <Carousel
-        title="Photos"
-        items={gallery.map((item, index) => {
-          // Si c'est une photo uploadée (après les photos de base), ajouter un bouton de suppression
-          const isUploaded = index >= baseGalleryLength;
-          return {
-            ...item,
-            onRemove: isUploaded ? () => onRemovePhoto(index - baseGalleryLength) : undefined
-          };
-        })}
-        carouselId="gallery"
-      />
-
-      <Carousel
-        title="Vidéos"
-        items={videos}
-        carouselId="videos"
-        onItemClick={onVideoClick}
-      />
+      </div>
     </section>
   );
 };
