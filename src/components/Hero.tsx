@@ -1,8 +1,4 @@
-interface HeroProps {
-  onVideoClick: (videoId: string) => void;
-}
-
-const Hero = ({ onVideoClick }: HeroProps) => {
+const Hero = () => {
   return (
     <section id="home" className="hero" aria-labelledby="hero-title">
       <div 
@@ -15,16 +11,6 @@ const Hero = ({ onVideoClick }: HeroProps) => {
         }}
         aria-hidden="true"
       ></div>
-      <video
-        className="hero-video"
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden="true"
-      >
-        <source src="/video/netflix_2.mp4" type="video/mp4" />
-      </video>
       <div className="hero-overlay" aria-hidden="true"></div>
       <div className="hero-content">
         <div className="hero-top-info">

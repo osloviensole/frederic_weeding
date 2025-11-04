@@ -5,6 +5,7 @@ interface CarouselItem {
   description: string;
   image: string;
   video?: string;
+  onRemove?: () => void;
 }
 
 interface CarouselProps {
@@ -97,8 +98,49 @@ const Carousel = ({ title, items, carouselId, onItemClick }: CarouselProps) => {
               className="carousel-card"
               role="listitem"
               onClick={() => item.video && onItemClick?.(item.video)}
-              style={item.video ? { cursor: 'pointer' } : {}}
+              style={{
+                ...(item.video ? { cursor: 'pointer' } : {}),
+                position: 'relative'
+              }}
             >
+              {item.onRemove && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+                      item.onRemove?.();
+                    }
+                  }}
+                  style={{
+                    position: 'absolute',
+                    top: '8px',
+                    right: '8px',
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '32px',
+                    height: '32px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    zIndex: 10,
+                    transition: 'background-color 0.2s'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(229, 9, 20, 0.9)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                  }}
+                  aria-label="Supprimer la photo"
+                  title="Supprimer la photo"
+                >
+                  ×
+                </button>
+              )}
               <img
                 src={item.image}
                 alt={item.title}
