@@ -23,7 +23,7 @@ const Hero = ({ onVideoClick }: HeroProps) => {
         playsInline
         aria-hidden="true"
       >
-        <source src="/video/netflix.mp4" type="video/mp4" />
+        <source src="/video/netflix_2.mp4" type="video/mp4" />
       </video>
       <div className="hero-overlay" aria-hidden="true"></div>
       <div className="hero-content">
