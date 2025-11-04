@@ -12,7 +12,7 @@ const CeremonyLocations = () => {
       number: 1,
       title: "Cérémonie civile",
       location: "11 eme rue limete résidentiel",
-      image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=2000&q=80",
+      image: "/image/civile.jpg",
       mapsQuery: "Shangri-La+Paris"
     },
     {

@@ -9,24 +9,15 @@ interface GalleryProps {
   onAddPhoto: (photo: GalleryItem) => void;
   onRemovePhoto: (index: number) => void;
   uploadedPhotosCount: number;
+  existingPhotosCount: number;
 }
 
-const Gallery = ({ gallery, videos, onVideoClick, onAddPhoto, onRemovePhoto, uploadedPhotosCount }: GalleryProps) => {
+const Gallery = ({ gallery, videos, onVideoClick, onAddPhoto, onRemovePhoto, uploadedPhotosCount, existingPhotosCount }: GalleryProps) => {
   const [showUploadForm, setShowUploadForm] = useState(false);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const titleInputRef = useRef<HTMLInputElement>(null);
   const descriptionInputRef = useRef<HTMLInputElement>(null);
-
-  // Convertir un fichier en data URL
-  const fileToDataURL = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (e) => resolve(e.target?.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  };
 
   // Gérer l'upload d'une photo
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,17 +32,26 @@ const Gallery = ({ gallery, videos, onVideoClick, onAddPhoto, onRemovePhoto, upl
 
     setUploading(true);
     try {
-      const imageUrl = await fileToDataURL(file);
-      const title = titleInputRef.current?.value.trim() || file.name.replace(/\.[^/.]+$/, '');
-      const description = descriptionInputRef.current?.value.trim() || 'Photo ajoutée';
+      const formData = new FormData();
+      formData.append('photo', file);
+      
+      const title = titleInputRef.current?.value.trim();
+      const description = descriptionInputRef.current?.value.trim();
+      
+      if (title) formData.append('title', title);
+      if (description) formData.append('description', description);
 
-      const newPhoto: GalleryItem = {
-        title,
-        description,
-        image: imageUrl
-      };
+      const response = await fetch('/api/upload-photo', {
+        method: 'POST',
+        body: formData
+      });
 
-      onAddPhoto(newPhoto);
+      if (!response.ok) {
+        throw new Error('Erreur lors de l\'upload');
+      }
+
+      const photoData = await response.json();
+      onAddPhoto(photoData);
       
       // Réinitialiser le formulaire
       if (fileInputRef.current) fileInputRef.current.value = '';
@@ -67,7 +67,8 @@ const Gallery = ({ gallery, videos, onVideoClick, onAddPhoto, onRemovePhoto, upl
   };
 
   // Calculer l'index de base pour les photos uploadées dans la galerie complète
-  const baseGalleryLength = gallery.length - uploadedPhotosCount;
+  // Les photos existantes sont affichées en premier, puis les photos uploadées
+  const baseGalleryLength = existingPhotosCount;
 
   return (
     <section id="gallery" className="section" aria-labelledby="gallery-title">

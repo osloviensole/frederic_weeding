@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Carousel from './Carousel';
+import MomentsCles from './MomentsCles';
 import { StoryItem } from '../data/weddingData';
 
 interface StoryProps {
@@ -83,8 +83,6 @@ const Story = ({ storyData, onVideoClick }: StoryProps) => {
             </div>
             <div className="invitation-detail-item">
               <span>27 décembre 2025</span>
-              <span className="clock-icon">🕐</span>
-              <span>14:30</span>
             </div>
           </div>
           <button className="invitation-rsvp-btn" onClick={handleRSVPClick}>
@@ -120,14 +118,7 @@ const Story = ({ storyData, onVideoClick }: StoryProps) => {
         </div>
       </div>
 
-      <div style={{ marginTop: 'calc(var(--spacing-unit) * 10)' }}>
-        <Carousel
-          title="Moments Clés"
-          items={storyData}
-          carouselId="story"
-          onItemClick={onVideoClick}
-        />
-      </div>
+      <MomentsCles moments={storyData} onVideoClick={onVideoClick} />
     </section>
   );
 };

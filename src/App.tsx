@@ -12,42 +12,67 @@ import Footer from './components/Footer';
 import VideoModal from './components/VideoModal';
 import { siteData, GalleryItem } from './data/weddingData';
 
-const STORAGE_KEY = 'wedding_gallery_uploaded';
-
 function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
+  const [existingPhotos, setExistingPhotos] = useState<GalleryItem[]>([]);
   const [uploadedPhotos, setUploadedPhotos] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Charger les photos uploadées depuis localStorage au démarrage
+  // Charger toutes les photos depuis le serveur au démarrage
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
+    const loadPhotos = async () => {
       try {
-        setUploadedPhotos(JSON.parse(stored));
-      } catch (e) {
-        console.error('Erreur lors du chargement des photos:', e);
+        // Charger les photos existantes du dossier image
+        const existingResponse = await fetch('/api/existing-photos');
+        if (existingResponse.ok) {
+          const existing = await existingResponse.json();
+          setExistingPhotos(existing);
+        }
+
+        // Charger les photos uploadées
+        const uploadedResponse = await fetch('/api/photos');
+        if (uploadedResponse.ok) {
+          const uploaded = await uploadedResponse.json();
+          setUploadedPhotos(uploaded);
+        }
+      } catch (error) {
+        console.error('Erreur lors du chargement des photos:', error);
+      } finally {
+        setLoading(false);
       }
-    }
+    };
+    loadPhotos();
   }, []);
 
   // Fonction pour ajouter une photo à la galerie
-  const handleAddPhoto = (photo: GalleryItem) => {
-    const newPhotos = [...uploadedPhotos, photo];
-    setUploadedPhotos(newPhotos);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newPhotos));
+  const handleAddPhoto = async (photo: GalleryItem & { filename?: string }) => {
+    setUploadedPhotos(prev => [...prev, photo]);
   };
 
   // Fonction pour supprimer une photo de la galerie
-  const handleRemovePhoto = (index: number) => {
-    const newPhotos = uploadedPhotos.filter((_, i) => i !== index);
-    setUploadedPhotos(newPhotos);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newPhotos));
+  const handleRemovePhoto = async (index: number) => {
+    const photoToRemove = uploadedPhotos[index];
+    const filename = (photoToRemove as any).filename || photoToRemove.image.split('/').pop();
+    
+    try {
+      const response = await fetch(`/api/delete-photo/${filename}`, {
+        method: 'DELETE'
+      });
+      
+      if (response.ok) {
+        setUploadedPhotos(prev => prev.filter((_, i) => i !== index));
+      } else {
+        console.error('Erreur lors de la suppression de la photo');
+      }
+    } catch (error) {
+      console.error('Erreur lors de la suppression:', error);
+    }
   };
 
-  // Combiner les photos de base avec les photos uploadées
-  const allGalleryItems = [...siteData.gallery, ...uploadedPhotos];
+  // Combiner toutes les photos : existantes + uploadées
+  const allGalleryItems = [...existingPhotos, ...uploadedPhotos];
 
   const handleVideoClick = (videoId: string) => {
     setCurrentVideoId(videoId);
@@ -80,6 +105,7 @@ function App() {
               onAddPhoto={handleAddPhoto}
               onRemovePhoto={handleRemovePhoto}
               uploadedPhotosCount={uploadedPhotos.length}
+              existingPhotosCount={existingPhotos.length}
             />
             <RSVP />
           </main>
