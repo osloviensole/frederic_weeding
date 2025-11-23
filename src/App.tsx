@@ -94,7 +94,7 @@ function App() {
             <Hero />
             <Story storyData={siteData.story} onVideoClick={handleVideoClick} />
             <CeremonyLocations />
-            <WeddingProgram onVideoClick={handleVideoClick} />
+            <WeddingProgram />
             <RSVPInvitation />
             <Events events={siteData.events} />
             <Gallery
