@@ -13,7 +13,7 @@ const MomentsCles = ({ moments, onVideoClick }: MomentsClesProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % moments.length);
-    }, 10000); // 10 secondes pour changer de moment
+    }, 20000); // 10 secondes pour changer de moment
     return () => clearInterval(interval);
   }, [moments.length]);
 

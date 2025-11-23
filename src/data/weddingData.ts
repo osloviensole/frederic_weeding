@@ -64,7 +64,7 @@ export const siteData: WeddingData = {
     {
       title: "Fiancailles",
       description: "20 Avril 2024",
-      images: ["/image/pi_f.jpg", "/image/dl_t.jpg"]
+      images: ["/image/pf.jpg", "/image/pff.jpg", "/image/pfff.jpg", "/image/plf.jpg", "/image/pll.jpg"]
     },
     {
       title: "Préparatifs",
