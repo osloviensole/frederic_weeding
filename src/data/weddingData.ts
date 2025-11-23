@@ -72,31 +72,31 @@ export const siteData: WeddingData = {
   ],
   events: [
     {
-      type: "Cérémonie",
-      title: "Cérémonie de Mariage",
-      time: "15h00",
-      location: "Salle de Fêtes Albertine Square",
-      address: "Kinshasa, République Démocratique du Congo",
+      type: "Discours",
+      title: "Discours de Mariage",
+      time: "12h00",
+      location: "Salle du Royaume des Témoins de Jéhovah",
+      address: "Kinshasa",
       mapsUrl: "https://maps.google.com/?q=Salle+de+Fêtes+Albertine+Square+Kinshasa",
-      description: "La cérémonie aura lieu dans cette magnifique salle des fêtes à Kinshasa."
+      description: "Le discours aura lieu dans cette magnifique salle du royaume."
     },
     {
       type: "Réception",
-      title: "Cocktail & Réception",
-      time: "18h00",
-      location: "Salle de Fêtes Albertine Square",
-      address: "Kinshasa, République Démocratique du Congo",
+      title: "Cocktail",
+      time: "13h00",
+      location: "Salle du Royaume des Témoins de Jéhovah",
+      address: "Kinshasa",
       mapsUrl: "https://maps.google.com/?q=Salle+de+Fêtes+Albertine+Square+Kinshasa",
-      description: "Rejoignez-nous pour un cocktail et un dîner de célébration."
+      description: "Rejoignez-nous pour un cocktail de célébration."
     },
     {
       type: "Soirée",
       title: "Soirée Dansante",
-      time: "22h00",
+      time: "18h00",
       location: "Salle de Fêtes Albertine Square",
       address: "Kinshasa, République Démocratique du Congo",
       mapsUrl: "https://maps.google.com/?q=Salle+de+Fêtes+Albertine+Square+Kinshasa",
-      description: "Dansons jusqu'au bout de la nuit pour célébrer ce jour exceptionnel."
+      description: "Diner et soirée dansante pour célébrer ce jour exceptionnel."
     }
   ],
   gallery: [

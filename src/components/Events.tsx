@@ -7,7 +7,7 @@ interface EventsProps {
 const Events = ({ events }: EventsProps) => {
   const getEventIcon = (type: string) => {
     switch (type.toLowerCase()) {
-      case 'cérémonie':
+      case 'discours':
         return '💍';
       case 'réception':
         return '🥂';
@@ -76,23 +76,6 @@ const Events = ({ events }: EventsProps) => {
                     </div>
 
                     <p className="event-description-modern">{event.description}</p>
-
-                    <a
-                      href={event.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="event-maps-button"
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                      </svg>
-                      <span>Voir sur Google Maps</span>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                      </svg>
-                    </a>
                   </div>
                 </div>
               </article>

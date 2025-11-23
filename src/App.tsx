@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import SplashScreen from './components/SplashScreen';
+import Header from './components/Header';
 import Hero from './components/Hero';
 import Story from './components/Story';
 import CeremonyLocations from './components/CeremonyLocations';
 import WeddingProgram from './components/WeddingProgram';
+import RSVPInvitation from './components/RSVPInvitation';
 import Events from './components/Events';
 import Gallery from './components/Gallery';
 import RSVP from './components/RSVP';
@@ -87,11 +89,13 @@ function App() {
       )}
       {!showSplash && (
         <>
+          <Header />
           <main>
             <Hero />
             <Story storyData={siteData.story} onVideoClick={handleVideoClick} />
             <CeremonyLocations />
             <WeddingProgram onVideoClick={handleVideoClick} />
+            <RSVPInvitation />
             <Events events={siteData.events} />
             <Gallery
               gallery={allGalleryItems}

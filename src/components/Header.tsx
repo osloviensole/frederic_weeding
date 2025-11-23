@@ -2,16 +2,22 @@ import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isOnHero, setIsOnHero] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
+      const scrollY = window.scrollY;
+      const heroElement = document.getElementById('home');
+      const heroHeight = heroElement ? heroElement.offsetHeight : 0;
+      
+      setScrolled(scrollY > 50);
+      setIsOnHero(scrollY < heroHeight * 0.8);
       
       // Update active link based on scroll position
       const sections = ['home', 'story', 'events', 'gallery', 'rsvp'];
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = scrollY + 100;
       
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -26,7 +32,8 @@ const Header = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -52,7 +59,7 @@ const Header = () => {
   ];
 
   return (
-    <header className={`header ${scrolled ? 'scrolled' : ''}`} role="banner">
+    <header className={`header ${scrolled ? 'scrolled' : ''} ${isOnHero ? 'on-hero' : ''}`} role="banner">
       <div className="header-content">
         <a 
           href="#home" 
@@ -63,7 +70,7 @@ const Header = () => {
             handleLinkClick('home');
           }}
         >
-          S & A
+          F & P
         </a>
         <nav className={`nav ${menuOpen ? 'active' : ''}`} role="navigation" aria-label="Navigation principale">
           {navLinks.map(link => (
