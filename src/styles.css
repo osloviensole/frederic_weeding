@@ -592,9 +592,10 @@ a {
 
 .section-title {
     font-size: clamp(1.8rem, 4vw, 2.5rem);
-    font-weight: 700;
+    font-weight: 400;
+    font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
     margin-bottom: calc(var(--spacing-unit) * 2);
-    letter-spacing: -1px;
+    letter-spacing: 2px;
 }
 
 .story-text-section .section-title {
@@ -767,10 +768,11 @@ a {
 
 .moments-cles-title {
     font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
+    font-weight: 400;
+    font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
     margin-bottom: calc(var(--spacing-unit) * 2);
     color: var(--color-text);
-    letter-spacing: -1px;
+    letter-spacing: 2px;
 }
 
 .moments-cles-subtitle {
@@ -1029,6 +1031,7 @@ a {
     font-weight: 700;
     margin-bottom: calc(var(--spacing-unit) * 2);
     line-height: 1.2;
+    text-transform: uppercase;
 }
 
 .moment-card-description {
@@ -1036,6 +1039,7 @@ a {
     color: var(--color-text-secondary);
     line-height: 1.6;
     max-width: 600px;
+    text-transform: lowercase;
 }
 
 /* Miniatures */
@@ -1215,8 +1219,10 @@ a {
 
 .events-title-modern {
     font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
+    font-weight: 400;
+    font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
     margin-bottom: calc(var(--spacing-unit) * 2);
+    letter-spacing: 2px;
     color: var(--color-text);
     letter-spacing: -1px;
 }
@@ -1516,8 +1522,10 @@ a {
 
 .gallery-title-modern {
     font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
+    font-weight: 400;
+    font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
     margin-bottom: calc(var(--spacing-unit) * 2);
+    letter-spacing: 2px;
     color: var(--color-text);
     letter-spacing: -1px;
 }
@@ -1954,7 +1962,7 @@ a {
 /* Encadré CTA avec style Netflix */
 .rsvp-cta-box {
     border: 2px solid var(--color-accent);
-    border-radius: var(--card-border-radius);
+    border-radius: 40px;
     background: var(--color-surface);
     padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 4);
     cursor: pointer;
@@ -2018,7 +2026,7 @@ a {
     line-height: 1.6;
     margin-bottom: calc(var(--spacing-unit) * 1);
     letter-spacing: 1px;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 /* Date limite avec accent */
@@ -2048,7 +2056,7 @@ a {
     line-height: 1.6;
     margin-bottom: calc(var(--spacing-unit) * 0.5);
     letter-spacing: 1px;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 /* Informations de contact */
@@ -2064,7 +2072,7 @@ a {
     font-weight: 600;
     letter-spacing: 1px;
     margin-bottom: calc(var(--spacing-unit) * 1);
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 /* Responsive */
@@ -2359,6 +2367,7 @@ a {
     text-align: center;
     color: var(--color-text);
     line-height: 1.2;
+    letter-spacing: 2px;
 }
 
 .invitation-message {
@@ -2368,7 +2377,7 @@ a {
 }
 
 .invitation-message p {
-    font-size: 0.95rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     font-weight: 300;
     letter-spacing: 0.5px;
     margin-bottom: calc(var(--spacing-unit) * 1.5);
@@ -2386,7 +2395,7 @@ a {
     flex-direction: column;
     gap: calc(var(--spacing-unit) * 2);
     margin-bottom: calc(var(--spacing-unit) * 6);
-    font-size: 0.9rem;
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
     color: rgba(255, 255, 255, 0.8);
     align-items: center;
 }
@@ -2409,7 +2418,7 @@ a {
     border: none;
     border-radius: var(--card-border-radius);
     padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 6);
-    font-size: 1rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     font-weight: 600;
     cursor: pointer;
     display: flex;
@@ -2457,10 +2466,10 @@ a {
 
 .story-subtitle {
     font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 300;
+    font-weight: 600;
     margin-bottom: calc(var(--spacing-unit) * 5);
     color: var(--color-text);
-    font-family: 'Brush Script MT', 'Lucida Handwriting', 'Georgia', cursive;
+    font-family: var(--font-primary);
 }
 
 .story-text {
@@ -2508,14 +2517,14 @@ a {
 }
 
 .ceremony-locations-title {
-    font-size: clamp(3.5rem, 10vw, 7rem);
-    font-weight: 400;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
     color: #ff0000;
     margin-bottom: calc(var(--spacing-unit) * 3);
-    letter-spacing: 6px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    font-family: 'Bebas Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Black', sans-serif;
-    line-height: 0.95;
+    font-family: var(--font-primary);
+    line-height: 1.1;
     display: flex;
     flex-direction: column;
     text-shadow: 
@@ -2562,11 +2571,11 @@ a {
 }
 
 .ceremony-locations-subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    color: #d4af37;
-    font-weight: 400;
-    letter-spacing: 8px;
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: var(--color-text);
+    font-weight: 500;
+    letter-spacing: 4px;
+    font-family: var(--font-primary);
     text-transform: uppercase;
     margin-top: calc(var(--spacing-unit) * 2);
 }
@@ -2662,7 +2671,7 @@ a {
     transition: all var(--transition-speed);
     width: 100%;
     margin-top: calc(var(--spacing-unit) * 3);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-primary);
 }
 
 .ceremony-location-wrapper .ceremony-location-btn {
@@ -2836,11 +2845,12 @@ a {
 }
 
 .program-title-main-modern {
-    font-family: var(--font-primary);
+    font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
     font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 700;
+    font-weight: 400;
     color: #ffffff;
     line-height: 1.1;
+    letter-spacing: 2px;
     margin: 0 0 calc(var(--spacing-unit) * 2) 0;
     letter-spacing: -1px;
     animation: fadeInUp 0.8s ease-out 0.2s both;
@@ -2853,7 +2863,7 @@ a {
     letter-spacing: 4px;
     text-transform: uppercase;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-primary);
     animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
@@ -2897,7 +2907,7 @@ a {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-primary);
     overflow: hidden;
     min-width: 180px;
     justify-content: center;
@@ -3092,7 +3102,7 @@ a {
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-primary);
 }
 
 .program-event-time {
@@ -3168,9 +3178,9 @@ a {
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: calc(var(--spacing-unit) * 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-section h3 {
@@ -3215,6 +3225,35 @@ a {
 
 .social-link:hover {
     background-color: var(--color-accent);
+}
+
+.footer-contacts {
+    text-align: center;
+    margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+.footer-contacts-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
+    color: var(--color-text);
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    letter-spacing: 2px;
+}
+
+.footer-contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 1.5);
+    align-items: center;
+}
+
+.footer-contact-item {
+    font-size: 1rem;
+    color: var(--color-text);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: none;
 }
 
 .footer-bottom {
@@ -3400,7 +3439,7 @@ a {
     }
 
     .invitation-message p {
-        font-size: 0.85rem;
+        font-size: clamp(1rem, 3vw, 1.2rem);
     }
 
     .wedding-program-section {
@@ -3474,7 +3513,7 @@ a {
 
     .invitation-rsvp-btn {
         padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 4);
-        font-size: 0.9rem;
+        font-size: clamp(1rem, 3vw, 1.2rem);
     }
 
     .story-text-section {
@@ -3501,13 +3540,13 @@ a {
     }
 
     .ceremony-locations-title {
-        font-size: clamp(2.5rem, 12vw, 5rem);
+        font-size: clamp(1.8rem, 8vw, 3.5rem);
         letter-spacing: 2px;
     }
 
     .ceremony-locations-subtitle {
-        font-size: clamp(0.9rem, 3vw, 1.2rem);
-        letter-spacing: 4px;
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+        letter-spacing: 3px;
     }
 
     .ceremony-locations-grid {

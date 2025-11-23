@@ -35,7 +35,7 @@ const WeddingProgram = ({ onVideoClick }: WeddingProgramProps) => {
     <section id="wedding-program" className="wedding-program-section-modern">
       <div className="wedding-program-container-modern">
         {/* Section photos avec effet parallax */}
-        <div className="program-photos-section">
+        {/* <div className="program-photos-section">
           <div className="program-photos-grid">
             <div 
               className={`program-photo-card ${activePhoto === 1 ? 'active' : ''}`}
@@ -71,15 +71,10 @@ const WeddingProgram = ({ onVideoClick }: WeddingProgramProps) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Section contenu */}
         <div className="wedding-program-content-modern">
-          <div className="program-badge-modern">
-            <span className="badge-icon">✨</span>
-            <span className="badge-text">Programme Exclusif</span>
-          </div>
-
           <div className="program-title-container-modern">
             <h2 className="program-title-main-modern">Programme</h2>
             <h3 className="program-title-subtitle-modern">DE MARIAGE</h3>

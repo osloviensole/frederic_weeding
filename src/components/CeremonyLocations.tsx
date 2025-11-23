@@ -58,7 +58,12 @@ const CeremonyLocations = () => {
                 <div className="ceremony-location-number">{location.number}</div>
                 <div className="ceremony-location-content">
                   <h3 className="ceremony-location-title">{location.title}</h3>
-                  <p className="ceremony-location-name">{location.location}</p>
+                  <p 
+                    className="ceremony-location-name"
+                    style={{ color: '#e50914' }}
+                  >
+                    {location.location}
+                  </p>
                 </div>
               </div>
             </div>

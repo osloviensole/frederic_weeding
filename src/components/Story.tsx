@@ -67,14 +67,14 @@ const Story = ({ storyData, onVideoClick }: StoryProps) => {
         <div className="invitation-content">
           <h2 className="invitation-title">Oui pour la vie!</h2>
           <div className="invitation-message">
-            <p>VOUS ÊTES CONVIÉ À NOTRE MARIAGE DANS</p>
-            <p>LA MAGIE D'UNE FIN D'ANNÉE,</p>
+            <p>Vous êtes convié à notre mariage dans</p>
+            <p>la magie d'une fin d'année,</p>
             <p>
-              NOUS UNIRONS NOS VIES LE <span className="highlight-date">27 DÉCEMBRE 2025</span>,
+              nous unirons nos vies le <span className="highlight-date">27 décembre 2025</span>,
             </p>
-            <p>ENTOURÉS DE CEUX QUI NOUS SONT CHERS,</p>
-            <p>DANS UNE CÉLÉBRATION D'AMOUR, DE</p>
-            <p>CULTURE ET DE LUMIÈRE..</p>
+            <p>entourés de ceux qui nous sont chers,</p>
+            <p>dans une célébration d'amour, de</p>
+            <p>culture et de lumière..</p>
           </div>
           <div className="invitation-details">
             <div className="invitation-detail-item">

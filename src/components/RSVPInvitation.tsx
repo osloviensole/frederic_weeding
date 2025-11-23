@@ -20,10 +20,10 @@ const RSVPInvitation = () => {
         {/* Section de demande de confirmation */}
         <div className="rsvp-confirmation-request">
           <p className="rsvp-request-text">
-            NOUS VOUS SERIONS INFINIMENT RECONNAISSANTS DE
+            Nous vous serions infiniment reconnaissants de
           </p>
           <p className="rsvp-request-text">
-            BIEN VOULOIR NOUS CONFIRMER VOTRE PRÉSENCE AVANT
+            bien vouloir nous confirmer votre présence avant
           </p>
         </div>
 
@@ -35,23 +35,17 @@ const RSVPInvitation = () => {
         {/* Politique concernant les enfants */}
         <div className="rsvp-children-policy">
           <p className="rsvp-policy-text">
-            NOUS AIMONS BEAUCOUP LES ENFANTS ET LES VÔTRES EN
+            Nous aimons beaucoup les enfants et les vôtres en
           </p>
           <p className="rsvp-policy-text">
-            PARTICULIER, MAIS POUR DES RAISONS DE SÉCURITÉ, LES
+            particulier, mais pour des raisons de sécurité, les
           </p>
           <p className="rsvp-policy-text">
-            ENFANTS NE SONT PAS CONVIÉS.
+            enfants ne sont pas conviés.
           </p>
           <p className="rsvp-policy-text">
-            MERCI DE VOTRE COMPRÉHENSION.
+            merci de votre compréhension.
           </p>
-        </div>
-
-        {/* Informations de contact */}
-        <div className="rsvp-contact-info">
-          <p className="rsvp-contact-item">Michael – +243 827 161 088</p>
-          <p className="rsvp-contact-item">Jordan – +243 820 805 239</p>
         </div>
       </div>
     </section>
