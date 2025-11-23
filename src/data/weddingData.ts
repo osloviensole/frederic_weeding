@@ -1,7 +1,9 @@
 export interface StoryItem {
   title: string;
   description: string;
-  image: string;
+  image?: string; // Pour rétrocompatibilité
+  images?: string[]; // Tableau d'images pour le carrousel
+  video?: string; // ID de la vidéo optionnelle
 }
 
 export interface Event {
@@ -46,23 +48,23 @@ export const siteData: WeddingData = {
   story: [
     {
       title: "Première Rencontre",
-      description: "Un hasard merveilleux dans un café parisien",
-      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3E2018%3C/text%3E%3C/svg%3E"
+      description: "28 Aout 2020",
+      images: ["/image/pr_1.jpg", ] // Exemple avec plusieurs photos en carrousel
     },
     {
-      title: "Premier Rendez-vous",
-      description: "Une soirée inoubliable au bord de la Seine",
-      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3ERomance%3C/text%3E%3C/svg%3E"
-    },
-    {
-      title: "Voyage en Italie",
-      description: "Deux semaines magiques à découvrir Rome et Venise",
-      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3EVoyage%3C/text%3E%3C/svg%3E"
+      title: "Nos Moments Heureux",
+      description: "12 Decembre 2021",
+      images: ["/image/pi_5.JPEG", "/image/pi_4.jpg"]
     },
     {
       title: "La Demande",
       description: "Un coucher de soleil sur les toits de Paris",
-      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect fill='%232a2a2a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='18'%3EProposition%3C/text%3E%3C/svg%3E"
+      images: ["/image/pi_f.jpg", "/image/df_r.jpg"]
+    },
+    {
+      title: "Fiancailles",
+      description: "20 Avril 2024",
+      images: ["/image/pi_f.jpg", "/image/dl_t.jpg"]
     },
     {
       title: "Préparatifs",

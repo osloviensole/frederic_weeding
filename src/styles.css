@@ -872,15 +872,106 @@ a {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
 }
 
-.moment-card-image {
+.moment-card-carousel {
+    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.moment-main-card.active .moment-card-image {
-    transform: scale(1.05);
+.moment-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    background-color: var(--color-surface);
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.moment-card-image.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+}
+
+.moment-main-card.active .moment-card-image.active {
+    transform: scale(1);
+}
+
+.moment-carousel-indicators {
+    position: absolute;
+    bottom: calc(var(--spacing-unit) * 2);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: calc(var(--spacing-unit) * 1);
+    z-index: 10;
+}
+
+.moment-carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.moment-carousel-dot:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.2);
+}
+
+.moment-carousel-dot.active {
+    background-color: var(--color-accent);
+    width: 24px;
+    border-radius: 4px;
+}
+
+.moment-carousel-prev,
+.moment-carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.moment-carousel-prev {
+    left: calc(var(--spacing-unit) * 2);
+}
+
+.moment-carousel-next {
+    right: calc(var(--spacing-unit) * 2);
+}
+
+.moment-carousel-prev:hover,
+.moment-carousel-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.moment-carousel-prev:active,
+.moment-carousel-next:active {
+    transform: translateY(-50%) scale(0.95);
 }
 
 .moment-card-overlay {
@@ -3210,11 +3301,42 @@ a {
         flex-direction: column;
         padding: calc(var(--spacing-unit) * 3);
         transform: translateX(-100%);
-        transition: transform var(--transition-speed);
+        transition: transform var(--transition-speed) ease-in-out;
+        z-index: 999;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        animation: none; /* Désactiver l'animation en mobile */
+        max-height: calc(100vh - var(--header-height));
+        overflow-y: auto;
     }
 
     .nav.active {
         transform: translateX(0);
+    }
+    
+    .nav-link {
+        padding: calc(var(--spacing-unit) * 2) 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        display: block;
+    }
+    
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-link.active::after {
+        display: none; /* Masquer la barre active en mobile */
+    }
+    
+    .nav-overlay {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        backdrop-filter: blur(2px);
     }
 
     .menu-toggle {

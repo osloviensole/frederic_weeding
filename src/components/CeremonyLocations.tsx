@@ -31,11 +31,6 @@ const CeremonyLocations = () => {
     }
   ];
 
-  const handleShowDirections = (mapsQuery: string) => {
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapsQuery)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
   return (
     <section id="ceremony-locations" className="ceremony-locations-section">
       <div className="ceremony-locations-container">
@@ -66,23 +61,6 @@ const CeremonyLocations = () => {
                   <p className="ceremony-location-name">{location.location}</p>
                 </div>
               </div>
-              <button
-                className="ceremony-location-btn"
-                onClick={() => handleShowDirections(location.mapsQuery)}
-                aria-label={`Afficher l'itinéraire vers ${location.location}`}
-              >
-                <svg 
-                  className="play-icon-btn" 
-                  width="20" 
-                  height="20" 
-                  viewBox="0 0 24 24" 
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-                <span>Itinéraire ici</span>
-              </button>
             </div>
           ))}
         </div>

@@ -50,6 +50,29 @@ const Header = () => {
     }
   };
 
+  // Fermer le menu en cliquant à l'extérieur
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (menuOpen && !target.closest('.nav') && !target.closest('.menu-toggle')) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener('click', handleClickOutside);
+      // Empêcher le scroll du body quand le menu est ouvert
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   const navLinks = [
     { id: 'home', label: 'Accueil' },
     { id: 'story', label: 'Notre Histoire' },
@@ -91,10 +114,20 @@ const Header = () => {
           className="menu-toggle"
           aria-label="Menu"
           aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setMenuOpen(!menuOpen);
+          }}
         >
-          ☰
+          {menuOpen ? '✕' : '☰'}
         </button>
+        {menuOpen && (
+          <div 
+            className="nav-overlay"
+            onClick={() => setMenuOpen(false)}
+            aria-hidden="true"
+          ></div>
+        )}
       </div>
     </header>
   );
