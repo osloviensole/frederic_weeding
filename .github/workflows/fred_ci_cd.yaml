@@ -60,7 +60,7 @@ jobs:
           echo "Répertoire courant :"
           pwd
 
-          echo "Accès à ~/apps/futuris"
+          echo "Accès à ~/apps/weeding/fred_weeding"
           cd ~/apps/weeding/fred_weeding || exit 1
 
           echo "Stash changements locaux"
