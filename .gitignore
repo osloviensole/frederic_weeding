@@ -22,3 +22,4 @@ public/uploads
 *.sln
 *.sw?
 .env
+src/config.ts

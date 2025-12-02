@@ -1,24 +1,78 @@
 import { useState, FormEvent } from 'react';
+import { emailApiConfig } from '../config';
 
 const RSVP = () => {
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
     
-    console.log('RSVP Data:', data);
+    // Réinitialiser les messages d'erreur
+    setShowError(false);
+    setErrorMessage('');
+    setIsSubmitting(true);
     
-    setShowSuccess(true);
-    e.currentTarget.reset();
-    
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
-    
-    e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    try {
+      // Construire le message avec toutes les informations du formulaire
+      const messageContent = `
+Nom: ${data.name}
+Email: ${data.email}
+Présence: ${data.attendance === 'yes' ? 'Oui, avec plaisir !' : 'Non, malheureusement'}
+Nombre de personnes: ${data.guests || 'Non spécifié'}
+${data.message ? `Message: ${data.message}` : ''}
+      `.trim();
+
+      // Préparer les données pour l'API
+      const apiPayload = {
+        sender_email: data.email as string,
+        sender_name: data.name as string,
+        organisation: "Mariage Frédéric & Priscille",
+        sujet: "Confirmation de présence - RSVP Mariage",
+        message: messageContent,
+        noms: [data.name as string, data.name as string]
+      };
+
+      // Envoyer la requête à l'API
+      const response = await fetch(emailApiConfig.url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${emailApiConfig.token}`
+        },
+        body: JSON.stringify(apiPayload)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `Erreur ${response.status}: ${response.statusText}`);
+      }
+
+      // Succès
+      setShowSuccess(true);
+      e.currentTarget.reset();
+      
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+      
+      e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
+      setErrorMessage(error instanceof Error ? error.message : 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.');
+      setShowError(true);
+      
+      setTimeout(() => {
+        setShowError(false);
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -35,6 +89,18 @@ const RSVP = () => {
           {showSuccess && (
             <div className="form-success" role="alert">
               ✓ Merci ! Votre confirmation a été enregistrée avec succès.
+            </div>
+          )}
+          {showError && (
+            <div className="form-error" role="alert" style={{ 
+              padding: '12px 16px', 
+              backgroundColor: '#ff4444', 
+              color: 'white', 
+              borderRadius: '4px', 
+              marginBottom: '20px',
+              textAlign: 'center'
+            }}>
+              ✗ {errorMessage || 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.'}
             </div>
           )}
 
@@ -109,8 +175,13 @@ const RSVP = () => {
             ></textarea>
           </div>
 
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-            Envoyer ma confirmation
+          <button 
+            type="submit" 
+            className="btn btn-primary" 
+            style={{ width: '100%', justifyContent: 'center' }}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma confirmation'}
           </button>
         </form>
       </div>

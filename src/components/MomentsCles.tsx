@@ -3,10 +3,9 @@ import { StoryItem } from '../data/weddingData';
 
 interface MomentsClesProps {
   moments: StoryItem[];
-  onVideoClick?: (videoId: string) => void;
 }
 
-const MomentsCles = ({ moments, onVideoClick }: MomentsClesProps) => {
+const MomentsCles = ({ moments }: MomentsClesProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeImageIndex, setActiveImageIndex] = useState<{ [key: number]: number }>({});
 
@@ -79,8 +78,6 @@ const MomentsCles = ({ moments, onVideoClick }: MomentsClesProps) => {
               <div
                 key={index}
                 className={`moment-main-card ${index === activeIndex ? 'active' : ''}`}
-                onClick={() => moment.video && onVideoClick?.(moment.video)}
-                style={moment.video ? { cursor: 'pointer' } : {}}
               >
                 <div className="moment-card-image-wrapper">
                   <div className="moment-card-carousel">
@@ -152,13 +149,6 @@ const MomentsCles = ({ moments, onVideoClick }: MomentsClesProps) => {
                     )}
                   </div>
                   <div className="moment-card-overlay"></div>
-                  {moment.video && (
-                    <div className="moment-play-button">
-                      <svg width="60" height="60" viewBox="0 0 24 24" fill="white">
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
-                    </div>
-                  )}
                 </div>
                 <div className="moment-card-content">
                   <div className="moment-card-number">{String(index + 1).padStart(2, '0')}</div>

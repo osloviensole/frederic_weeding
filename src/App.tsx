@@ -10,13 +10,10 @@ import Events from './components/Events';
 import Gallery from './components/Gallery';
 import RSVP from './components/RSVP';
 import Footer from './components/Footer';
-import VideoModal from './components/VideoModal';
 import { siteData, GalleryItem } from './data/weddingData';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
-  const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
   const [existingPhotos, setExistingPhotos] = useState<GalleryItem[]>([]);
   const [uploadedPhotos, setUploadedPhotos] = useState<GalleryItem[]>([]);
 
@@ -72,16 +69,6 @@ function App() {
   // Combiner toutes les photos : existantes + uploadées
   const allGalleryItems = [...existingPhotos, ...uploadedPhotos];
 
-  const handleVideoClick = (videoId: string) => {
-    setCurrentVideoId(videoId);
-    setVideoModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setVideoModalOpen(false);
-    setCurrentVideoId(null);
-  };
-
   return (
     <>
       {showSplash && (
@@ -92,15 +79,13 @@ function App() {
           <Header />
           <main>
             <Hero />
-            <Story storyData={siteData.story} onVideoClick={handleVideoClick} />
+            <Story storyData={siteData.story} />
             <CeremonyLocations />
             <WeddingProgram />
             <RSVPInvitation />
             <Events events={siteData.events} />
             <Gallery
               gallery={allGalleryItems}
-              videos={siteData.videos}
-              onVideoClick={handleVideoClick}
               onAddPhoto={handleAddPhoto}
               onRemovePhoto={handleRemovePhoto}
               uploadedPhotosCount={uploadedPhotos.length}
@@ -109,11 +94,6 @@ function App() {
             <RSVP />
           </main>
           <Footer />
-          <VideoModal
-            isOpen={videoModalOpen}
-            videoId={currentVideoId}
-            onClose={handleCloseModal}
-          />
         </>
       )}
     </>

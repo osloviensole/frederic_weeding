@@ -1,18 +1,15 @@
 import { useState, useRef } from 'react';
-import Carousel from './Carousel';
-import { GalleryItem, VideoItem } from '../data/weddingData';
+import { GalleryItem } from '../data/weddingData';
 
 interface GalleryProps {
   gallery: GalleryItem[];
-  videos: VideoItem[];
-  onVideoClick: (videoId: string) => void;
   onAddPhoto: (photo: GalleryItem) => void;
   onRemovePhoto: (index: number) => void;
   uploadedPhotosCount: number;
   existingPhotosCount: number;
 }
 
-const Gallery = ({ gallery, videos, onVideoClick, onAddPhoto, onRemovePhoto, uploadedPhotosCount, existingPhotosCount }: GalleryProps) => {
+const Gallery = ({ gallery, onAddPhoto, onRemovePhoto, uploadedPhotosCount, existingPhotosCount }: GalleryProps) => {
   const [showUploadForm, setShowUploadForm] = useState(false);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -197,40 +194,6 @@ const Gallery = ({ gallery, videos, onVideoClick, onAddPhoto, onRemovePhoto, upl
               </div>
             );
           })}
-        </div>
-
-        {/* Section Vidéos */}
-        <div className="gallery-videos-section">
-          <h3 className="gallery-videos-title">Vidéos</h3>
-          <div className="gallery-videos-grid">
-            {videos.map((video, index) => (
-              <div
-                key={index}
-                className="gallery-video-item"
-                onClick={() => onVideoClick(video.video)}
-                style={{ '--video-index': index } as React.CSSProperties}
-              >
-                <div className="video-item-image-wrapper">
-                  <img
-                    src={video.image}
-                    alt={video.title}
-                    className="video-item-image"
-                    loading="lazy"
-                  />
-                  <div className="video-item-overlay"></div>
-                  <div className="video-play-button">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="white">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </div>
-                </div>
-                <div className="video-item-content">
-                  <h4 className="video-item-title">{video.title}</h4>
-                  <p className="video-item-description">{video.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

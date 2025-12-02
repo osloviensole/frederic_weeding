@@ -4,10 +4,9 @@ import { StoryItem } from '../data/weddingData';
 
 interface StoryProps {
   storyData: StoryItem[];
-  onVideoClick?: (videoId: string) => void;
 }
 
-const Story = ({ storyData, onVideoClick }: StoryProps) => {
+const Story = ({ storyData }: StoryProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fadeClass, setFadeClass] = useState('');
   
@@ -118,7 +117,7 @@ const Story = ({ storyData, onVideoClick }: StoryProps) => {
         </div>
       </div>
 
-      <MomentsCles moments={storyData} onVideoClick={onVideoClick} />
+      <MomentsCles moments={storyData} />
     </section>
   );
 };
