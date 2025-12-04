@@ -1942,7 +1942,10 @@ a {
    RSVP INVITATION SECTION - Carte d'invitation
    ========================================== */
 .rsvp-invitation-section {
-    padding: calc(var(--spacing-unit) * 10) calc(var(--spacing-unit) * 6);
+    padding-top: calc(var(--spacing-unit) * 2);
+    padding-bottom: calc(var(--spacing-unit) * 10);
+    padding-left: calc(var(--spacing-unit) * 6);
+    padding-right: calc(var(--spacing-unit) * 6);
     background-color: var(--color-primary);
     display: flex;
     justify-content: center;
@@ -2078,7 +2081,10 @@ a {
 /* Responsive */
 @media (max-width: 768px) {
     .rsvp-invitation-section {
-        padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 4);
+        padding-top: calc(var(--spacing-unit) * 2);
+        padding-bottom: calc(var(--spacing-unit) * 6);
+        padding-left: calc(var(--spacing-unit) * 4);
+        padding-right: calc(var(--spacing-unit) * 4);
         min-height: auto;
     }
 
@@ -2696,7 +2702,10 @@ a {
    WEDDING PROGRAM SECTION - Design moderne
    ========================================== */
 .wedding-program-section-modern {
-    padding: calc(var(--spacing-unit) * 10) calc(var(--spacing-unit) * 6);
+    padding-top: calc(var(--spacing-unit) * 10);
+    padding-bottom: calc(var(--spacing-unit) * 2);
+    padding-left: calc(var(--spacing-unit) * 6);
+    padding-right: calc(var(--spacing-unit) * 6);
     background-color: var(--color-primary);
     position: relative;
     overflow: hidden;
@@ -2998,7 +3007,10 @@ a {
 
 @media (max-width: 768px) {
     .wedding-program-section-modern {
-        padding: calc(var(--spacing-unit) * 10) calc(var(--spacing-unit) * 4);
+        padding-top: calc(var(--spacing-unit) * 10);
+        padding-bottom: calc(var(--spacing-unit) * 2);
+        padding-left: calc(var(--spacing-unit) * 4);
+        padding-right: calc(var(--spacing-unit) * 4);
     }
 
     .program-photos-section {

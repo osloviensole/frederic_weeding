@@ -16,22 +16,6 @@ const RSVPInvitation = () => {
         <div className="rsvp-deadline">
           <p className="rsvp-deadline-text">LE 11 DECEMBRE 2025</p>
         </div>
-
-        {/* Politique concernant les enfants */}
-        <div className="rsvp-children-policy">
-          <p className="rsvp-policy-text">
-            Nous aimons beaucoup les enfants et les vôtres en
-          </p>
-          <p className="rsvp-policy-text">
-            particulier, mais pour des raisons de sécurité, les
-          </p>
-          <p className="rsvp-policy-text">
-            enfants ne sont pas conviés.
-          </p>
-          <p className="rsvp-policy-text">
-            merci de votre compréhension.
-          </p>
-        </div>
       </div>
     </section>
   );
