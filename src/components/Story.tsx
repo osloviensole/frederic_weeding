@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faPlay } from '@fortawesome/free-solid-svg-icons';
 import MomentsCles from './MomentsCles';
 import { StoryItem } from '../data/weddingData';
 
@@ -78,14 +80,18 @@ const Story = ({ storyData }: StoryProps) => {
           <div className="invitation-details">
             <div className="invitation-detail-item">
               <span>100% Party Vibes</span>
-              <span className="sparkle-icon">✨</span>
+              <span className="sparkle-icon">
+                <FontAwesomeIcon icon={faStar} />
+              </span>
             </div>
             <div className="invitation-detail-item">
               <span>27 décembre 2025</span>
             </div>
           </div>
           <button className="invitation-rsvp-btn" onClick={handleRSVPClick}>
-            <span className="play-icon">▶</span>
+            <span className="play-icon">
+              <FontAwesomeIcon icon={faPlay} />
+            </span>
             <span>RSVP dès maintenant</span>
           </button>
         </div>

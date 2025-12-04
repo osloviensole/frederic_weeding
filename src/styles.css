@@ -280,6 +280,23 @@ a {
     transition: transform 0.1s ease-out;
 }
 
+.hero-threejs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.hero-threejs canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
 @keyframes heroBackgroundFadeIn {
     from {
         opacity: 0;
@@ -317,6 +334,7 @@ a {
     right: 0;
     bottom: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%);
+    z-index: 3;
     z-index: 3;
     animation: heroOverlayFadeIn 1.5s ease-out;
 }
@@ -1198,6 +1216,230 @@ a {
 /* ==========================================
    EVENTS SECTION - Design moderne avec timeline
    ========================================== */
+/* Animation Netflix avant Events */
+.events-animation-section {
+    padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 6);
+    background: linear-gradient(180deg, var(--color-primary) 0%, rgba(11, 11, 11, 0.95) 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.events-animation-threejs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.events-animation-threejs canvas {
+    display: block;
+    width: 100% !important;
+    height: 400px !important;
+}
+
+.events-animation-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    min-height: 400px;
+    height: 400px;
+}
+
+.events-animation-content {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.events-animation-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.events-animation-header {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 3);
+    margin-bottom: calc(var(--spacing-unit) * 6);
+    flex-wrap: wrap;
+}
+
+.netflix-logo {
+    width: 50px;
+    height: 50px;
+    background: var(--color-accent);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--color-text);
+    font-family: var(--font-primary);
+    animation: logoGlow 2s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(229, 9, 20, 0.8);
+    }
+}
+
+.events-animation-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: 2px;
+    margin: 0;
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+}
+
+.events-animation-rating {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 1);
+    margin-left: auto;
+}
+
+.events-animation-rating .star {
+    color: var(--color-accent);
+    font-size: 24px;
+    line-height: 1;
+    animation: starPulse 1.5s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * 0.1s);
+}
+
+.events-animation-rating .star:nth-child(1) { animation-delay: 0s; }
+.events-animation-rating .star:nth-child(2) { animation-delay: 0.1s; }
+.events-animation-rating .star:nth-child(3) { animation-delay: 0.2s; }
+.events-animation-rating .star:nth-child(4) { animation-delay: 0.3s; }
+.events-animation-rating .star:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes starPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.events-animation-message {
+    text-align: center;
+    margin: calc(var(--spacing-unit) * 6) 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.events-animation-message p {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.events-animation-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: calc(var(--spacing-unit) * 6) 0;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.events-animation-progress-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--color-accent) 0%, rgba(229, 9, 20, 0.5) 100%);
+    animation: progressFill 2s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes progressFill {
+    to {
+        width: 60%;
+    }
+}
+
+.events-animation-actions {
+    display: flex;
+    justify-content: center;
+    gap: calc(var(--spacing-unit) * 8);
+    margin-top: calc(var(--spacing-unit) * 6);
+    flex-wrap: wrap;
+}
+
+.events-animation-action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1);
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    padding: calc(var(--spacing-unit) * 2);
+    border-radius: var(--card-border-radius);
+}
+
+.events-animation-action-btn:hover {
+    transform: translateY(-5px);
+    color: var(--color-accent);
+}
+
+.events-animation-action-btn .action-icon {
+    font-size: 28px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all var(--transition-speed) ease;
+}
+
+.events-animation-action-btn .action-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.events-animation-action-btn:hover .action-icon {
+    background: rgba(229, 9, 20, 0.2);
+    transform: scale(1.1);
+}
+
+.events-animation-action-btn .action-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
 .events-section-modern {
     padding: calc(var(--spacing-unit) * 10) calc(var(--spacing-unit) * 6);
     background-color: var(--color-primary);
@@ -1306,6 +1548,14 @@ a {
 
 .event-type-icon {
     font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-type-icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
 .event-type-text {
@@ -1463,6 +1713,54 @@ a {
 }
 
 @media (max-width: 768px) {
+    .events-animation-section {
+        padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 4);
+        min-height: 350px;
+    }
+
+    .events-animation-header {
+        gap: calc(var(--spacing-unit) * 2);
+        margin-bottom: calc(var(--spacing-unit) * 4);
+    }
+
+    .netflix-logo {
+        width: 40px;
+        height: 40px;
+        font-size: 26px;
+    }
+
+    .events-animation-title {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    .events-animation-rating .star {
+        font-size: 20px;
+    }
+
+    .events-animation-message {
+        margin: calc(var(--spacing-unit) * 4) 0;
+    }
+
+    .events-animation-message p {
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+        line-height: 1.6;
+    }
+
+    .events-animation-actions {
+        gap: calc(var(--spacing-unit) * 4);
+    }
+
+    .events-animation-action-btn .action-icon {
+        font-size: 24px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .events-animation-action-btn .action-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
     .events-section-modern {
         padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 4);
     }
@@ -2416,6 +2714,15 @@ a {
 .sparkle-icon,
 .clock-icon {
     font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sparkle-icon svg,
+.clock-icon svg {
+    width: 1rem;
+    height: 1rem;
 }
 
 .invitation-rsvp-btn {
@@ -2446,6 +2753,14 @@ a {
 .play-icon {
     font-size: 0.8rem;
     color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-icon svg {
+    width: 0.8rem;
+    height: 0.8rem;
 }
 
 /* ==========================================

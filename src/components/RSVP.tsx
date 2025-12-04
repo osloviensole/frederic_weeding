@@ -8,7 +8,14 @@ const RSVP = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    const formData = new FormData(e.currentTarget);
+    // Stocker la référence du formulaire pour éviter les problèmes avec e.currentTarget
+    const form = e.currentTarget;
+    if (!form) {
+      console.error('Formulaire non trouvé');
+      return;
+    }
+    
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData);
     
     setIsSubmitting(true);
@@ -63,30 +70,51 @@ ${data.message ? `Message: ${data.message}` : ''}
       
       console.log('Options fetch:', { ...fetchOptions, headers: Object.fromEntries(Object.entries(headers)) });
       
-      const response = await fetch(apiUrl, fetchOptions);
+      let response: Response;
+      try {
+        response = await fetch(apiUrl, fetchOptions);
+      } catch (networkError) {
+        // Erreur réseau (pas de réponse du serveur)
+        console.error('Erreur réseau:', networkError);
+        throw new Error('Erreur de connexion. Impossible de joindre le serveur. Veuillez vérifier votre connexion internet et réessayer.');
+      }
 
       if (!response.ok) {
         let errorData;
         try {
           errorData = await response.json();
         } catch {
+          // Si on ne peut pas parser le JSON, utiliser le statut HTTP
           errorData = { message: `Erreur ${response.status}: ${response.statusText}` };
         }
         
-        const errorMessage = errorData.message || errorData.detail || errorData.error || `Erreur ${response.status}: ${response.statusText}`;
+        // Messages d'erreur spécifiques selon le code de statut
+        let errorMessage = errorData.message || errorData.detail || errorData.error || `Erreur ${response.status}: ${response.statusText}`;
+        
+        if (response.status === 502) {
+          errorMessage = 'Le serveur est temporairement indisponible. Veuillez réessayer dans quelques instants.';
+        } else if (response.status === 503) {
+          errorMessage = 'Service temporairement indisponible. Veuillez réessayer plus tard.';
+        } else if (response.status === 500) {
+          errorMessage = 'Erreur interne du serveur. Veuillez réessayer ou contacter le support.';
+        }
+        
         console.error('Erreur API:', {
           status: response.status,
           statusText: response.statusText,
           url: apiUrl,
           errorData
         });
-        throw new Error(`Erreur ${response.status}: ${errorMessage}`);
+        throw new Error(errorMessage);
       }
 
       // Succès
       await response.json().catch(() => ({}));
       
-      e.currentTarget.reset();
+      // Réinitialiser le formulaire seulement si il existe toujours
+      if (form && form.reset) {
+        form.reset();
+      }
       
       await Swal.fire({
         icon: 'success',
@@ -102,19 +130,27 @@ ${data.message ? `Message: ${data.message}` : ''}
       console.error('Erreur lors de l\'envoi:', error);
       
       let errorMessage = 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.';
+      let errorTitle = 'Erreur d\'envoi';
       
       if (error instanceof Error) {
         errorMessage = error.message;
         
-        // Si c'est une erreur réseau (pas de réponse du serveur)
-        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-          errorMessage = 'Erreur de connexion. Vérifiez votre connexion internet.';
+        // Messages spécifiques selon le type d'erreur
+        if (error.message.includes('Failed to fetch') || 
+            error.message.includes('NetworkError') || 
+            error.message.includes('Erreur de connexion')) {
+          errorTitle = 'Erreur de connexion';
+          errorMessage = 'Impossible de se connecter au serveur. Vérifiez votre connexion internet et réessayez.';
+        } else if (error.message.includes('502') || error.message.includes('indisponible')) {
+          errorTitle = 'Serveur indisponible';
+        } else if (error.message.includes('500')) {
+          errorTitle = 'Erreur serveur';
         }
       }
       
       await Swal.fire({
         icon: 'error',
-        title: 'Erreur d\'envoi',
+        title: errorTitle,
         text: errorMessage,
         confirmButtonColor: '#e50914',
         confirmButtonText: 'D\'accord',

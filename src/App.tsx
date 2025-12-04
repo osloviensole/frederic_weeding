@@ -6,6 +6,7 @@ import Story from './components/Story';
 import CeremonyLocations from './components/CeremonyLocations';
 import WeddingProgram from './components/WeddingProgram';
 import RSVPInvitation from './components/RSVPInvitation';
+import EventsAnimation from './components/EventsAnimation';
 import Events from './components/Events';
 import Gallery from './components/Gallery';
 import RSVP from './components/RSVP';
@@ -83,6 +84,7 @@ function App() {
             <CeremonyLocations />
             <WeddingProgram />
             <RSVPInvitation />
+            <EventsAnimation />
             <Events events={siteData.events} />
             <Gallery
               gallery={allGalleryItems}

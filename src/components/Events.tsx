@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRing, faWineGlass, faGift, faStar } from '@fortawesome/free-solid-svg-icons';
 import { Event } from '../data/weddingData';
 
 interface EventsProps {
@@ -8,13 +10,13 @@ const Events = ({ events }: EventsProps) => {
   const getEventIcon = (type: string) => {
     switch (type.toLowerCase()) {
       case 'discours':
-        return '💍';
+        return faRing;
       case 'réception':
-        return '🥂';
+        return faWineGlass;
       case 'soirée':
-        return '🎉';
+        return faGift;
       default:
-        return '✨';
+        return faStar;
     }
   };
 
@@ -43,7 +45,9 @@ const Events = ({ events }: EventsProps) => {
                 <div className="event-card-inner">
                   {/* Badge de type */}
                   <div className="event-type-badge">
-                    <span className="event-type-icon">{getEventIcon(event.type)}</span>
+                    <span className="event-type-icon">
+                      <FontAwesomeIcon icon={getEventIcon(event.type)} />
+                    </span>
                     <span className="event-type-text">{event.type}</span>
                   </div>
 

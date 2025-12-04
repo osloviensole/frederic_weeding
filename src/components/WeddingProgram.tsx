@@ -15,8 +15,8 @@ const WeddingProgram = () => {
                 <img src="/image/fredpri.jpg" alt="Frédéric & Priscille" className="photo-card-image" />
                 <div className="photo-card-overlay"></div>
                 <div className="photo-card-shadow"></div>
-              </div>
-            </div>
+          </div>
+          </div>
             <div 
               className={`program-photo-card ${activePhoto === 2 ? 'active' : ''}`}
               style={{ '--photo-index': 1 } as React.CSSProperties}
@@ -26,8 +26,8 @@ const WeddingProgram = () => {
                 <img src="/image/pi_2.jpg" alt="Frédéric & Priscille" className="photo-card-image" />
                 <div className="photo-card-overlay"></div>
                 <div className="photo-card-shadow"></div>
-              </div>
-            </div>
+          </div>
+        </div>
             <div 
               className={`program-photo-card ${activePhoto === 3 ? 'active' : ''}`}
               style={{ '--photo-index': 2 } as React.CSSProperties}
@@ -37,7 +37,7 @@ const WeddingProgram = () => {
                 <img src="/image/pi_3.jpg" alt="Frédéric & Priscille" className="photo-card-image" />
                 <div className="photo-card-overlay"></div>
                 <div className="photo-card-shadow"></div>
-              </div>
+          </div>
             </div>
           </div>
         </div> */}
