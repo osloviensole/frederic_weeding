@@ -33,21 +33,37 @@ ${data.message ? `Message: ${data.message}` : ''}
         noms: [data.name as string, data.name as string]
       };
 
-      // Nettoyer l'URL (retirer le slash final si présent)
-      const apiUrl = emailApiConfig.url.replace(/\/$/, '');
+      // S'assurer que l'URL a le slash final (requis par l'API)
+      const apiUrl = emailApiConfig.url.endsWith('/') 
+        ? emailApiConfig.url 
+        : emailApiConfig.url + '/';
       
       console.log('Envoi vers:', apiUrl);
+      console.log('Méthode: POST');
+      console.log('Token:', emailApiConfig.token ? 'Présent' : 'Manquant');
       console.log('Payload:', apiPayload);
       
-      // Envoyer la requête à l'API
-      const response = await fetch(apiUrl, {
+      // Préparer les headers
+      const headers: HeadersInit = {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${emailApiConfig.token}`,
+        'Accept': 'application/json'
+      };
+      
+      // Envoyer la requête à l'API avec une configuration stricte
+      const fetchOptions: RequestInit = {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Token ${emailApiConfig.token}`
-        },
-        body: JSON.stringify(apiPayload)
-      });
+        mode: 'cors',
+        credentials: 'omit',
+        headers: headers,
+        body: JSON.stringify(apiPayload),
+        cache: 'no-store',
+        redirect: 'follow' // Suivre les redirections (la méthode POST devrait être préservée)
+      };
+      
+      console.log('Options fetch:', { ...fetchOptions, headers: Object.fromEntries(Object.entries(headers)) });
+      
+      const response = await fetch(apiUrl, fetchOptions);
 
       if (!response.ok) {
         let errorData;
