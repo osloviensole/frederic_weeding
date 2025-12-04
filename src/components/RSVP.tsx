@@ -33,8 +33,14 @@ ${data.message ? `Message: ${data.message}` : ''}
         noms: [data.name as string, data.name as string]
       };
 
+      // Nettoyer l'URL (retirer le slash final si présent)
+      const apiUrl = emailApiConfig.url.replace(/\/$/, '');
+      
+      console.log('Envoi vers:', apiUrl);
+      console.log('Payload:', apiPayload);
+      
       // Envoyer la requête à l'API
-      const response = await fetch(emailApiConfig.url, {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,9 +50,21 @@ ${data.message ? `Message: ${data.message}` : ''}
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        const errorMessage = errorData.message || errorData.detail || `Erreur ${response.status}: ${response.statusText}`;
-        throw new Error(errorMessage);
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch {
+          errorData = { message: `Erreur ${response.status}: ${response.statusText}` };
+        }
+        
+        const errorMessage = errorData.message || errorData.detail || errorData.error || `Erreur ${response.status}: ${response.statusText}`;
+        console.error('Erreur API:', {
+          status: response.status,
+          statusText: response.statusText,
+          url: apiUrl,
+          errorData
+        });
+        throw new Error(`Erreur ${response.status}: ${errorMessage}`);
       }
 
       // Succès
@@ -67,17 +85,24 @@ ${data.message ? `Message: ${data.message}` : ''}
     } catch (error) {
       console.error('Erreur lors de l\'envoi:', error);
       
-      const errorMessage = error instanceof Error 
-        ? error.message 
-        : 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.';
+      let errorMessage = 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.';
+      
+      if (error instanceof Error) {
+        errorMessage = error.message;
+        
+        // Si c'est une erreur réseau (pas de réponse du serveur)
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+          errorMessage = 'Erreur de connexion. Vérifiez votre connexion internet.';
+        }
+      }
       
       await Swal.fire({
         icon: 'error',
-        title: 'Erreur',
+        title: 'Erreur d\'envoi',
         text: errorMessage,
         confirmButtonColor: '#e50914',
         confirmButtonText: 'D\'accord',
-        footer: 'Veuillez vérifier votre connexion et réessayer.'
+        footer: 'Si le problème persiste, contactez-nous directement.'
       });
     } finally {
       setIsSubmitting(false);
