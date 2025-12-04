@@ -26,7 +26,7 @@ ${data.message ? `Message: ${data.message}` : ''}
       // Préparer les données pour l'API
       const apiPayload = {
         sender_email: data.email as string,
-        sender_name: data.name as string,
+        sender_name: "FRED",
         organisation: "Mariage Frédéric & Priscille",
         sujet: "Confirmation de présence - RSVP Mariage",
         message: messageContent,
