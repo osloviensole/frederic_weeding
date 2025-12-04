@@ -1,11 +1,9 @@
 import { useState, FormEvent } from 'react';
+import Swal from 'sweetalert2';
 import { emailApiConfig } from '../config';
 
 const RSVP = () => {
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,9 +11,6 @@ const RSVP = () => {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
     
-    // Réinitialiser les messages d'erreur
-    setShowError(false);
-    setErrorMessage('');
     setIsSubmitting(true);
     
     try {
@@ -50,26 +45,40 @@ ${data.message ? `Message: ${data.message}` : ''}
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || `Erreur ${response.status}: ${response.statusText}`);
+        const errorMessage = errorData.message || errorData.detail || `Erreur ${response.status}: ${response.statusText}`;
+        throw new Error(errorMessage);
       }
 
       // Succès
-      setShowSuccess(true);
+      await response.json().catch(() => ({}));
+      
       e.currentTarget.reset();
       
-      setTimeout(() => {
-        setShowSuccess(false);
-      }, 5000);
+      await Swal.fire({
+        icon: 'success',
+        title: 'Merci !',
+        text: 'Votre confirmation a été enregistrée avec succès.',
+        confirmButtonColor: '#e50914',
+        confirmButtonText: 'Parfait',
+        timer: 5000,
+        timerProgressBar: true
+      });
       
-      e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (error) {
       console.error('Erreur lors de l\'envoi:', error);
-      setErrorMessage(error instanceof Error ? error.message : 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.');
-      setShowError(true);
       
-      setTimeout(() => {
-        setShowError(false);
-      }, 5000);
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.';
+      
+      await Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: errorMessage,
+        confirmButtonColor: '#e50914',
+        confirmButtonText: 'D\'accord',
+        footer: 'Veuillez vérifier votre connexion et réessayer.'
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -86,24 +95,6 @@ ${data.message ? `Message: ${data.message}` : ''}
 
       <div className="rsvp-container">
         <form id="rsvp-form" aria-label="Formulaire de confirmation" onSubmit={handleSubmit}>
-          {showSuccess && (
-            <div className="form-success" role="alert">
-              ✓ Merci ! Votre confirmation a été enregistrée avec succès.
-            </div>
-          )}
-          {showError && (
-            <div className="form-error" role="alert" style={{ 
-              padding: '12px 16px', 
-              backgroundColor: '#ff4444', 
-              color: 'white', 
-              borderRadius: '4px', 
-              marginBottom: '20px',
-              textAlign: 'center'
-            }}>
-              ✗ {errorMessage || 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.'}
-            </div>
-          )}
-
           <div className="form-group">
             <label htmlFor="name" className="form-label">Nom complet *</label>
             <input
